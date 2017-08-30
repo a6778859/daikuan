@@ -50,6 +50,8 @@
     </bean>
 
 
+    <mvc:resources location="/images/" mapping="/images/**"/>
+
     <!-- 拦截器
     <mvc:interceptors>
         <mvc:interceptor>
