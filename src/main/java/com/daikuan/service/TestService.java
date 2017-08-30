@@ -10,6 +10,11 @@ public class TestService {
     @Autowired
     TestMapper testDao;
 
+    /**
+     *
+     * @param id
+     * @return
+     */
      public Test selectByPrimaryKey(Integer id){
         return testDao.selectByPrimaryKey(id);
     }
