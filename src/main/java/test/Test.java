@@ -24,6 +24,7 @@ public class Test {
     public void index() {
         System.out.println(testService.selectByPrimaryKey(1));
         //12121
+        //1212
 
 //    @Test
 //    public void selectForPage() {
