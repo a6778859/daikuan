@@ -23,6 +23,7 @@ public class Test {
     @org.junit.Test
     public void index() {
         System.out.println(testService.selectByPrimaryKey(1));
+        //12121
 
 //    @Test
 //    public void selectForPage() {
