@@ -1,6 +1,5 @@
 package test;
 
-import com.daikuan.service.TestService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,15 +15,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 })
 public class testset {
-
-    @Autowired
-    TestService testService;
+//122121
 
     @org.junit.Test
     public void index() {
-        System.out.println(testService.selectByPrimaryKey(1));
+      //  System.out.println(testService.selectByPrimaryKey(1));
 
-//    @Test
+//    @BatisGenerator
 //    public void selectForPage() {
 //        // 根据条件，按页码+每页条数分页
 //        UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();

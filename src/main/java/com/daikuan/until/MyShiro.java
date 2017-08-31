@@ -1,6 +1,8 @@
 package com.daikuan.until;
 
 
+import com.daikuan.entity.User;
+import com.daikuan.service.CommonService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -18,26 +20,22 @@ import java.util.Set;
 public class MyShiro extends AuthorizingRealm {
 
     private String myshiro_lock = "myShiro_lock_";
+    @Autowired
+    CommonService commonService;
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         //获取登录时输入的用户名
         String loginName = (String) principalCollection.fromRealm(getName()).iterator().next();
         //到数据库查是否有此对象
-        String user=null;
+        User user = commonService.selectForUser(loginName);
         if (user != null) {
             //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
             //用户的角色集合
             Set<String> set = new HashSet<String>();
-            set.add("admin");
+            set.add(user.getRole());
             info.setRoles(set);
-            //用户的角色对应的所有权限，如果只使用角色定义访问权限，下面的四行可以不要
-            //      List<Role> roleList=user.getRoleList();
-            // for (Role role : roleList) {
-//            List<String> list2=new ArrayList<String>();
-//            list2.add("1212")
-//            info.addStringPermissions(user.getRoleId()+"");
-            //   }
             return info;
         }
         return null;
@@ -55,10 +53,16 @@ public class MyShiro extends AuthorizingRealm {
         //UsernamePasswordToken对象用来存放提交的登录信息
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         synchronized (token.getUsername()) {
-            //判断用户名中的redis是否存在
-            String key="myShiro_lock" + token.getUsername();
-
-            return new SimpleAuthenticationInfo("1", "1", getName());
+//            //查出是否有此用户
+            User user = commonService.selectForUser(token.getUsername());
+            if (user == null) {
+                throw new UnknownAccountException();
+            }
+            //密码错误
+            if (!user.getPassword().equals(String.valueOf(token.getPassword()))) {
+                throw new UnknownAccountException();
+            }
+            return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), getName());
         }
 
 

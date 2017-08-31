@@ -1,33 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
-      http://www.springframework.org/schema/beans
-      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-      http://www.springframework.org/schema/tx
-      http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-      http://www.springframework.org/schema/context
-      http://www.springframework.org/schema/context/spring-context-3.0.xsd
-         ">
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:cache="http://www.springframework.org/schema/cache"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:c="http://www.springframework.org/schema/c"
+	   xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+		  http://www.springframework.org/schema/cache
+          http://www.springframework.org/schema/cache/spring-cache.xsd
+     http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+">
 
-	<!-- scanner redis properties -->
-	<context:property-placeholder location="classpath:redis.properties"
-		ignore-unresolvable="true" />
 
-	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-		<property name="maxIdle" value="${redis.maxIdle}" />
-		<property name="maxActive" value="${redis.maxActive}" />
-		<property name="maxWait" value="${redis.maxWait}" />
-		<property name="testOnBorrow" value="${redis.testOnBorrow}" />
+
+
+	<!-- 开启缓存注解 -->
+	<cache:annotation-driven cache-manager="cacheManager" />
+
+
+	<!-- spring自己的缓存管理器，这里定义了缓存位置名称 ，即注解中的value -->
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+		<property name="caches">
+			<set>
+				<bean class="com.daikuan.until.RedisCache">
+					<property name="redisTemplate" ref="redisTemplate" />
+					<property name="name" value="base"/>
+					<!-- common名称要在类或方法的注解中使用 -->
+				</bean>
+			</set>
+		</property>
 	</bean>
 
-	<bean id="connectionFactory"
-		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"
-		p:pool-config-ref="poolConfig" />
 
-	<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-		<property name="connectionFactory" ref="connectionFactory" />
+	<!-- redis缓存管理器 -->
+	<!--<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" c:redis-operations-ref="jedisTemplate"/>-->
+
+	<!-- 连接池配置. -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!-- 连接池中最大连接数。高版本：maxTotal，低版本：maxActive -->
+		<property name="maxTotal" value="200" />
+		<!-- 连接池中最大空闲的连接数. -->
+		<property name="maxIdle" value="100" />
+		<!-- 连接池中最少空闲的连接数. -->
+		<property name="minIdle" value="50" />
+		<!-- 当连接池资源耗尽时，调用者最大阻塞的时间，超时将跑出异常。单位，毫秒数;默认为-1.表示永不超时。高版本：maxWaitMillis，低版本：maxWait -->
+		<property name="maxWaitMillis" value="5000" />
+		<!-- 连接空闲的最小时间，达到此值后空闲连接将可能会被移除。负值(-1)表示不移除. -->
+		<property name="minEvictableIdleTimeMillis" value="100000" />
+		<!-- 对于“空闲链接”检测线程而言，每次检测的链接资源的个数。默认为3 -->
+		<property name="numTestsPerEvictionRun" value="3" />
+		<!-- “空闲链接”检测线程，检测的周期，毫秒数。如果为负值，表示不运行“检测线程”。默认为-1. -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- testOnBorrow:向调用者输出“链接”资源时，是否检测是有有效，如果无效则从连接池中移除，并尝试获取继续获取。默认为false。建议保持默认值. -->
+		<!-- testOnReturn:向连接池“归还”链接时，是否检测“链接”对象的有效性。默认为false。建议保持默认值.-->
+		<!-- testWhileIdle:向调用者输出“链接”对象时，是否检测它的空闲超时；默认为false。如果“链接”空闲超时，将会被移除。建议保持默认值. -->
+		<!-- whenExhaustedAction:当“连接池”中active数量达到阀值时，即“链接”资源耗尽时，连接池需要采取的手段, 默认为1(0:抛出异常。1:阻塞，直到有可用链接资源。2:强制创建新的链接资源) -->
 	</bean>
+	<!-- Spring提供的Redis连接工厂 -->
+	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
+		<!-- 连接池配置. -->
+		<property name="poolConfig" ref="jedisPoolConfig" />
+		<!-- Redis服务主机. -->
+		<property name="hostName" value="${redis.host}" />
+		<!-- Redis服务端口号. -->
+		<property name="port" value="${redis.port}" />
+		<!-- Redis服务连接密码. -->
+		<!-- <property name="password" value="${redis.password}" /> -->
+		<!-- 连超时设置. -->
+		<property name="timeout" value="15000" />
+		<!-- 是否使用连接池. -->
+		<property name="usePool" value="true" />
+	</bean>
+	<!-- Spring提供的访问Redis类. -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<!-- <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" /> -->
+			<bean class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer" />
+		</property>
+	</bean>
+	<!--<context:component-scan base-package="com.oil.common.util.*"/>-->
+	<!-- 静态注入 -->
+	<!--<bean name="RedisTemplate" class="com.oil.common.util.RedisInitDao">-->
+	<!--<property name="redisTemplate" ref="redisTemplate"/>-->
+	<!--</bean>-->
 
-</beans> 
+
+
+	<!--<cache:annotation-driven cache-manager="cacheManager" />-->
+	<!--<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">-->
+	<!--<property name="cacheManager"  ref="cacheManagerFactory"/>-->
+	<!--</bean>-->
+
+	<!--<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
+	<!--<property name="configLocation"  value="classpath:ehcache.xml"/>-->
+	<!--<property name="shared" value="true" />-->
+	<!--</bean>-->
+
+
+</beans>

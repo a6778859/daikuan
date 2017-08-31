@@ -51,7 +51,7 @@
 
 
     <mvc:resources location="/images/" mapping="/images/**"/>
-
+    <mvc:resources location="/adminlte/" mapping="/adminlte/**"/>
     <!-- 拦截器
     <mvc:interceptors>
         <mvc:interceptor>
