@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.daikuan.dao.LoanMapper">
+  <resultMap id="BaseResultMap" type="com.daikuan.entity.Loan">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="payreturn" jdbcType="VARCHAR" property="payreturn" />
+    <result column="moenyrange" jdbcType="VARCHAR" property="moenyrange" />
+    <result column="timerange" jdbcType="VARCHAR" property="timerange" />
+    <result column="interestrate" jdbcType="VARCHAR" property="interestrate" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="lendingmethods" jdbcType="VARCHAR" property="lendingmethods" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.daikuan.entity.Loan">
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, addtime, updatetime, payreturn, moenyrange, timerange, interestrate, label, 
+    lendingmethods, status
+  </sql>
+  <sql id="Blob_Column_List">
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from loan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from loan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.daikuan.entity.Loan">
+    insert into loan (id, title, addtime, 
+      updatetime, payreturn, moenyrange, 
+      timerange, interestrate, label, 
+      lendingmethods, status, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{payreturn,jdbcType=VARCHAR}, #{moenyrange,jdbcType=VARCHAR}, 
+      #{timerange,jdbcType=VARCHAR}, #{interestrate,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
+      #{lendingmethods,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.daikuan.entity.Loan">
+    insert into loan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="payreturn != null">
+        payreturn,
+      </if>
+      <if test="moenyrange != null">
+        moenyrange,
+      </if>
+      <if test="timerange != null">
+        timerange,
+      </if>
+      <if test="interestrate != null">
+        interestrate,
+      </if>
+      <if test="label != null">
+        label,
+      </if>
+      <if test="lendingmethods != null">
+        lendingmethods,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payreturn != null">
+        #{payreturn,jdbcType=VARCHAR},
+      </if>
+      <if test="moenyrange != null">
+        #{moenyrange,jdbcType=VARCHAR},
+      </if>
+      <if test="timerange != null">
+        #{timerange,jdbcType=VARCHAR},
+      </if>
+      <if test="interestrate != null">
+        #{interestrate,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="lendingmethods != null">
+        #{lendingmethods,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.daikuan.entity.Loan">
+    update loan
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payreturn != null">
+        payreturn = #{payreturn,jdbcType=VARCHAR},
+      </if>
+      <if test="moenyrange != null">
+        moenyrange = #{moenyrange,jdbcType=VARCHAR},
+      </if>
+      <if test="timerange != null">
+        timerange = #{timerange,jdbcType=VARCHAR},
+      </if>
+      <if test="interestrate != null">
+        interestrate = #{interestrate,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="lendingmethods != null">
+        lendingmethods = #{lendingmethods,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.daikuan.entity.Loan">
+    update loan
+    set title = #{title,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      payreturn = #{payreturn,jdbcType=VARCHAR},
+      moenyrange = #{moenyrange,jdbcType=VARCHAR},
+      timerange = #{timerange,jdbcType=VARCHAR},
+      interestrate = #{interestrate,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      lendingmethods = #{lendingmethods,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.daikuan.entity.Loan">
+    update loan
+    set title = #{title,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      payreturn = #{payreturn,jdbcType=VARCHAR},
+      moenyrange = #{moenyrange,jdbcType=VARCHAR},
+      timerange = #{timerange,jdbcType=VARCHAR},
+      interestrate = #{interestrate,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      lendingmethods = #{lendingmethods,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

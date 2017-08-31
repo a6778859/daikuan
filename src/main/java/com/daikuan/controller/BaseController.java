@@ -1,9 +1,14 @@
 package com.daikuan.controller;
 
+import com.daikuan.dao.LoanMapper;
+import com.daikuan.service.CommonService;
+import com.daikuan.service.LabelService;
+import com.daikuan.service.LoanService;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -23,7 +28,12 @@ public abstract class BaseController {
 	protected HttpSession session;
 
 
-
+	@Autowired
+	CommonService commonService;
+	@Autowired
+	LoanService loanService;
+	@Autowired
+	LabelService labelService;
 
 	@ModelAttribute
 	public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {

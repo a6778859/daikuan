@@ -10,11 +10,26 @@
         <result column="role" jdbcType="VARCHAR" property="role"/>
     </resultMap>
 
+
+
     <select id="selectForUser" resultMap="UserBaseResultMap">
         select name,password,role
         from user
         where name = #{name}
     </select>
+
+
+    <select id="selectForLoanList" resultType="java.util.Map">
+        select * from loan order by updatetime
+    </select>
+
+
+    <select id="selectForLabelList" resultType="java.util.Map">
+        select * from label order by id desc
+    </select>
+
+
+
 
 
 </mapper>

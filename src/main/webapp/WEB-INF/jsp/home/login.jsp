@@ -111,12 +111,12 @@
 </div>
 <!-- /.login-box -->
 
-<!-- jQuery 2.2.3 -->
-<script src="${TMP}plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="${TMP}bootstrap/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="${TMP}plugins/iCheck/icheck.min.js"></script>
+  <!-- jQuery 2.2.3 -->
+  <script src="${TMP}plugins/jQuery/jquery-2.2.3.min.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="${TMP}bootstrap/js/bootstrap.min.js"></script>
+  <!-- iCheck -->
+  <script src="${TMP}plugins/iCheck/icheck.min.js"></script>
 <script>
 
 

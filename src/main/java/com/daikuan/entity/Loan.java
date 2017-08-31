@@ -1,0 +1,125 @@
+package com.daikuan.entity;
+
+import java.util.Date;
+
+public class Loan {
+    private Integer id;
+
+    private String title;
+
+    private Date addtime;
+
+    private Date updatetime;
+
+    private String payreturn;
+
+    private String moenyrange;
+
+    private String timerange;
+
+    private String interestrate;
+
+    private String label;
+
+    private String lendingmethods;
+
+    private String status;
+
+    private String remark;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public Date getAddtime() {
+        return addtime;
+    }
+
+    public void setAddtime(Date addtime) {
+        this.addtime = addtime;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public String getPayreturn() {
+        return payreturn;
+    }
+
+    public void setPayreturn(String payreturn) {
+        this.payreturn = payreturn == null ? null : payreturn.trim();
+    }
+
+    public String getMoenyrange() {
+        return moenyrange;
+    }
+
+    public void setMoenyrange(String moenyrange) {
+        this.moenyrange = moenyrange == null ? null : moenyrange.trim();
+    }
+
+    public String getTimerange() {
+        return timerange;
+    }
+
+    public void setTimerange(String timerange) {
+        this.timerange = timerange == null ? null : timerange.trim();
+    }
+
+    public String getInterestrate() {
+        return interestrate;
+    }
+
+    public void setInterestrate(String interestrate) {
+        this.interestrate = interestrate == null ? null : interestrate.trim();
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label == null ? null : label.trim();
+    }
+
+    public String getLendingmethods() {
+        return lendingmethods;
+    }
+
+    public void setLendingmethods(String lendingmethods) {
+        this.lendingmethods = lendingmethods == null ? null : lendingmethods.trim();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+}
