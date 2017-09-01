@@ -20,13 +20,39 @@
 
 
     <select id="selectForLoanList" resultType="java.util.Map">
-        select * from loan order by updatetime
+        select * from loan order by updatetime,id desc
     </select>
 
 
     <select id="selectForLabelList" resultType="java.util.Map">
         select * from label order by id desc
     </select>
+
+    <select id="selectForRelation" resultType="java.util.Map">
+        select labelid from relation where loanid=#{loanid}
+    </select>
+
+
+
+
+    <insert id="insertByLoanId" >
+        insert into  relation (loanid,labelid)
+        values
+        <foreach collection="label" item="item" index="index" separator="," >
+            (#{loanid},#{item})
+        </foreach>
+
+    </insert>
+
+
+
+    <delete id="deleteByLoanid" parameterType="java.lang.Integer">
+        delete from relation
+        where loanid = #{loanid}
+    </delete>
+
+
+
 
 
 

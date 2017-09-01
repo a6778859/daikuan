@@ -6,6 +6,7 @@ import com.daikuan.entity.Loan;
 import com.daikuan.entity.User;
 import com.daikuan.until.CommonUtil;
 import com.daikuan.until.PageLimit;
+import com.daikuan.until.StringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,6 +98,11 @@ public class HomeController extends BaseController {
         long total = pageInfo.getTotal(); //获取总记录数
         modelMap.addAttribute("list", list);
         modelMap.addAttribute("total", total + "");
+
+
+        //查找出关联的标签
+        List<Map> labelList = commonService.selectForLabelList();
+        modelMap.addAttribute("labelList", labelList);
         return "/home/loan.jsp";
     }
 
@@ -112,6 +119,9 @@ public class HomeController extends BaseController {
             Loan loan = loanService.selectByPrimaryKey(Integer.parseInt(id));
             map.put("state", "1");
             map.put("msg", loan);
+            //查找对应的lable
+            List<Map> checkbox=commonService.selectForRelation(Integer.parseInt(id));
+            map.put("checkbox", checkbox);
         } catch (Exception e) {
             map.put("state", "2");
             map.put("msg", "异常");
@@ -121,6 +131,47 @@ public class HomeController extends BaseController {
         write(jsonString);
         return null;
     }
+
+    /**
+     * 贷款修改
+     *
+     * @return
+     */
+    @RequestMapping(value = "/loansave", method = RequestMethod.POST)
+    public String loansave(ModelMap modelMap, Loan loan) throws IOException {
+        try {
+
+            String label=request.getParameter("label");
+            //不为空修改
+            if (StringUtil.isBlank(request.getParameter("id"))) {
+                loanService.insertSelective(loan);
+
+
+            } else {
+                loanService.updateByPrimaryKeySelective(loan);
+                //删除关联的标签
+                commonService.deleteByLoanid(loan.getId());
+            }
+            if(!StringUtil.isBlank(request.getParameter("label"))){
+                String[] arr=request.getParameterValues("label");
+                List<String> list = Arrays.asList(arr);
+                //插入标签
+                commonService.insertByLoanId(loan.getId(),list);
+            }
+
+
+
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            writeErrorJson("异常");
+            return null;
+        }
+        writeSuccessJson("成功");
+        return null;
+    }
+
+
 
 
     /**
@@ -162,6 +213,28 @@ public class HomeController extends BaseController {
         return null;
     }
 
+
+    /**
+     * 标签修改
+     *
+     * @return
+     */
+    @RequestMapping(value = "/labelsave", method = RequestMethod.POST)
+    public String labelsave(ModelMap modelMap, Label label) throws IOException {
+        try {
+            //不为空修改
+            if (StringUtil.isBlank(request.getParameter("id"))) {
+                labelService.insertSelective(label);
+            } else {
+                labelService.updateByPrimaryKeySelective(label);
+            }
+
+        } catch (Exception e) {
+            writeErrorJson("异常");
+        }
+        writeSuccessJson("成功");
+        return null;
+    }
 
 
 }

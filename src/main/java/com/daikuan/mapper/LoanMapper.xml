@@ -48,7 +48,7 @@
       #{lendingmethods,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.daikuan.entity.Loan">
+  <insert id="insertSelective" parameterType="com.daikuan.entity.Loan"  useGeneratedKeys="true"  keyProperty="id">
     insert into loan
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

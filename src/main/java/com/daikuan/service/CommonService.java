@@ -25,5 +25,16 @@ public class CommonService {
         return commonMapper.selectForLabelList();
     }
 
+    public List<Map> selectForRelation(int loanid) {
+        return commonMapper.selectForRelation(loanid);
+    }
 
+    public int insertByLoanId(int loanid, List<String> label){
+        return commonMapper.insertByLoanId(loanid,label);
+    }
+
+    public int deleteByLoanid(int loanid){
+
+        return commonMapper.deleteByLoanid(loanid);
+    }
 }

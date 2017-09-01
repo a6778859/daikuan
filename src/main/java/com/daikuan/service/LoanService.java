@@ -13,4 +13,13 @@ public class LoanService {
         return  loanMapper.selectByPrimaryKey(id);
     }
 
+    public  int insertSelective(Loan loan){
+        return loanMapper.insertSelective(loan);
+    }
+
+    public  int updateByPrimaryKeySelective(Loan loan){
+        return loanMapper.updateByPrimaryKeySelective(loan);
+    }
+
+
 }

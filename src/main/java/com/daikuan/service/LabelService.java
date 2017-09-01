@@ -15,4 +15,11 @@ public class LabelService {
         return labelMapper.selectByPrimaryKey(id);
     }
 
+    public  int insertSelective(Label label){
+        return labelMapper.insertSelective(label);
+    }
+
+    public  int updateByPrimaryKeySelective(Label label){
+        return labelMapper.updateByPrimaryKeySelective(label);
+    }
 }
