@@ -393,7 +393,7 @@
 
                var checkbox= json.checkbox;
                for(var i=0;i<checkbox.length;i++){
-                   $("input:checkbox[value='"+checkbox[i].labelid+"']").attr('checked','true');
+                   $("input:checkbox[value='"+checkbox[i].labelid+"']").prop('checked','checked');
                }
 
 
