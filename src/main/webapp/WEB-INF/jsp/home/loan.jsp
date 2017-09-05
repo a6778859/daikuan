@@ -76,7 +76,8 @@
                                                            <option value="最新">
                                                              最新
                                                            </option>
-                                                         </select>
+
+                                                                                                                           </select>
                                           </div>
                                         </div>
 
@@ -143,7 +144,7 @@
                     <c:forEach var="list" items="${labelList}">
                       <div class="checkbox" style='width:25%;float:left;'>
                         <label>
-                          <input type="checkbox" value="${list.id}" name="label">
+                          <input type="checkbox" value="${list.id}" name="label2">
                           ${list.value}
                         </label>
                       </div>
@@ -374,12 +375,17 @@
                 $("#user-form :input").each(function() {
                   var this_id = $(this).attr("id");
                   var msg_ = msg[this_id];
-                  $("#" + this_id).val(msg_);
+
+                  if(this_id=="label"){
+                   $("#label option[value='"+msg_+"']").attr("selected",true);
+                   }else{
+                   $("#" + this_id).val(msg_);
+                   }
                 });
                 $("#remark").val(json.msg.remark);
                 $('#myModal').modal();
 
-                $("input[name='label']").each(function() {
+                $("input[name='label2']").each(function() {
                   $(this).prop('checked', false); //
                 });
 
@@ -387,6 +393,9 @@
                 for (var i = 0; i < checkbox.length; i++) {
                   $("input:checkbox[value='" + checkbox[i].labelid + "']").prop('checked', 'checked');
                 }
+
+
+
 
               } else {
                 alert(json.msg);
@@ -406,7 +415,7 @@
           });
           $("#remark").val("");
           $("#status").val("1");
-          $("input[name='label']").each(function() {
+          $("input[name='label2']").each(function() {
             $(this).prop('checked', false); //
           });
           $('#myModal').modal();

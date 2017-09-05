@@ -155,7 +155,6 @@ public class HomeController extends BaseController {
     public String loansave(ModelMap modelMap, Loan loan) throws IOException {
         try {
 
-            String label = request.getParameter("label");
             //不为空修改
             if (StringUtil.isBlank(request.getParameter("id"))) {
                 loanService.insertSelective(loan);
@@ -166,8 +165,8 @@ public class HomeController extends BaseController {
                 //删除关联的标签
                 commonService.deleteByLoanid(loan.getId());
             }
-            if (!StringUtil.isBlank(request.getParameter("label"))) {
-                String[] arr = request.getParameterValues("label");
+            if (!StringUtil.isBlank(request.getParameter("label2"))) {
+                String[] arr = request.getParameterValues("label2");
                 List<String> list = Arrays.asList(arr);
                 //插入标签
                 commonService.insertByLoanId(loan.getId(), list);
