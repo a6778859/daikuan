@@ -5,6 +5,7 @@ import com.daikuan.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,8 +18,8 @@ public class CommonService {
         return commonMapper.selectForUser(name);
     }
 
-    public List<Map> selectForLoanList() {
-        return commonMapper.selectForLoanList();
+    public List<Map> selectForLoanList(String status) {
+        return commonMapper.selectForLoanList(status);
     }
 
     public List<Map> selectForLabelList() {
@@ -29,12 +30,24 @@ public class CommonService {
         return commonMapper.selectForRelation(loanid);
     }
 
-    public int insertByLoanId(int loanid, List<String> label){
-        return commonMapper.insertByLoanId(loanid,label);
+    public int insertByLoanId(int loanid, List<String> label) {
+        return commonMapper.insertByLoanId(loanid, label);
     }
 
-    public int deleteByLoanid(int loanid){
-
+    public int deleteByLoanid(int loanid) {
         return commonMapper.deleteByLoanid(loanid);
+    }
+
+    public int updateByLoanUpdatetime(int loanid, Date date) {
+        return commonMapper.updateByLoanUpdatetime(loanid, date);
+    }
+
+
+    public List<Map> selectForLoanDetail() {
+        return commonMapper.selectForLoanDetail();
+    }
+
+    public List<Map> selectForLabelInLoanId(List tmpString) {
+        return commonMapper.selectForLabelInLoanId(tmpString);
     }
 }

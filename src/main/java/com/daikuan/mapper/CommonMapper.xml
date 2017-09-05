@@ -11,7 +11,6 @@
     </resultMap>
 
 
-
     <select id="selectForUser" resultMap="UserBaseResultMap">
         select name,password,role
         from user
@@ -20,7 +19,14 @@
 
 
     <select id="selectForLoanList" resultType="java.util.Map">
-        select * from loan order by updatetime,id desc
+        select * from loan
+
+        　　<if test="status != null and status == '1' ">
+        　　        where status=${status}
+        　　</if>
+
+
+        order by updatetime desc,id desc
     </select>
 
 
@@ -33,17 +39,14 @@
     </select>
 
 
-
-
-    <insert id="insertByLoanId" >
-        insert into  relation (loanid,labelid)
+    <insert id="insertByLoanId">
+        insert into relation (loanid,labelid)
         values
-        <foreach collection="label" item="item" index="index" separator="," >
+        <foreach collection="label" item="item" index="index" separator=",">
             (#{loanid},#{item})
         </foreach>
 
     </insert>
-
 
 
     <delete id="deleteByLoanid" parameterType="java.lang.Integer">
@@ -52,10 +55,17 @@
     </delete>
 
 
+    <update id="updateByLoanUpdatetime" parameterType="java.lang.Integer">
+        update loan set updatetime=now() where id=#{loanid}
+    </update>
 
 
-
-
+    <select id="selectForLabelInLoanId" resultType="java.util.Map">
+        select c.id as id ,b.value as value from relation as a join label as b on (a.labelid=b.id) join loan as c on (a.loanid=c.id) where b.status=1  and c.id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 
 
 </mapper>

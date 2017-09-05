@@ -63,6 +63,24 @@
                         placeholder="期限范围">
                       </div>
                     </div>
+
+                      <div class="form-group">
+                                          <label for="telphone" class="col-sm-3 control-label">
+                                            标签
+                                          </label>
+                                          <div class="col-sm-8">
+                                                         <select class="form-control" id='label' name="label">
+                                                           <option value="热门">
+                                                             热门
+                                                           </option>
+                                                           <option value="最新">
+                                                             最新
+                                                           </option>
+                                                         </select>
+                                          </div>
+                                        </div>
+
+
                   </div>
                   <div class="col-md-6">
                     <div class="form-group has-feedback">
@@ -74,10 +92,6 @@
                         placeholder="额度范围" data-bv-field="loginName">
                         <i class="form-control-feedback" data-bv-icon-for="loginName" style="display: none;">
                         </i>
-                        <small data-bv-validator="notEmpty" data-bv-validator-for="loginName"
-                        class="help-block" style="display: none;">
-                          请输入登录名
-                        </small>
                       </div>
                     </div>
                     <div class="form-group">
@@ -124,35 +138,18 @@
                   </div>
                 </div>
                 <!-- /.box-body -->
-
-                  <div class="box-footer " >
-                          <div class="form-group" style="width:100%">
-
-
-
-
-                                     <c:forEach var="list" items="${labelList}">
-                                        <div class="checkbox" style='width:25%;float:left;' >
-                                                     <label>
-                                                        <input type="checkbox" value="${list.id}" name="label">
-                                                    ${list.value}
-                                                </label>
-                                          </div>
-
-                                     </c:forEach>
-
-
-
-
-
-
-
-                             </div>
-
+                <div class="box-footer ">
+                  <div class="form-group" style="width:100%">
+                    <c:forEach var="list" items="${labelList}">
+                      <div class="checkbox" style='width:25%;float:left;'>
+                        <label>
+                          <input type="checkbox" value="${list.id}" name="label">
+                          ${list.value}
+                        </label>
+                      </div>
+                    </c:forEach>
                   </div>
-
-
-
+                </div>
                 <div class="box-footer text-right">
                   <!--以下两种方式提交验证,根据所需选择-->
                   <button type="button" class="btn btn-default" data-btn-type="cancel" data-dismiss="modal">
@@ -280,11 +277,14 @@
                                   ${list.status==1? "显示" : "隐藏"}
                                 </td>
                                 <td>
-                                  <a>
-                                    <div onclick="update(${list.id})">
-                                      修改
+
+                                    <div onclick="update(${list.id})" style="float:left">
+                                          <a>修改</a>
                                     </div>
-                                  </a>
+                               <div style="float:left">
+                                               &nbsp;&nbsp;&nbsp;&nbsp;
+                                                              </div>
+                                    <div onclick="update_time(${list.id})" style="float:left"><a>置顶</a></div>
                                 </td>
                               </tr>
                             </c:forEach>
@@ -361,10 +361,6 @@
         <!-- /.content -->
       </div>
       <script>
-
-
-
-
         function update(id) {
           $.ajax({
             type: 'get',
@@ -383,22 +379,14 @@
                 $("#remark").val(json.msg.remark);
                 $('#myModal').modal();
 
+                $("input[name='label']").each(function() {
+                  $(this).prop('checked', false); //
+                });
 
-
-                  $("input[name='label']").each(function () {
-                          $(this).prop('checked', false);//
-
-                      });
-
-
-               var checkbox= json.checkbox;
-               for(var i=0;i<checkbox.length;i++){
-                   $("input:checkbox[value='"+checkbox[i].labelid+"']").prop('checked','checked');
-               }
-
-
-
-
+                var checkbox = json.checkbox;
+                for (var i = 0; i < checkbox.length; i++) {
+                  $("input:checkbox[value='" + checkbox[i].labelid + "']").prop('checked', 'checked');
+                }
 
               } else {
                 alert(json.msg);
@@ -418,12 +406,36 @@
           });
           $("#remark").val("");
           $("#status").val("1");
-       $("input[name='label']").each(function () {
-                          $(this).prop('checked', false);//
-
-                      });
+          $("input[name='label']").each(function() {
+            $(this).prop('checked', false); //
+          });
           $('#myModal').modal();
         }
+
+
+        function update_time(id){
+               $.ajax({
+                        type: 'get',
+                        url: "/home/loan_time?id="+id,
+                        data: "",
+                        dataType: 'json',
+                        beforeSend: function() {},
+                        success: function(json) {
+                          if (json.state == 1) {
+                            alert("成功");
+                            location.reload()
+                          } else {
+                            alert(json.msg);
+                          }
+                        },
+                        error: function(XmlHttpRequest) {
+                          alert('发送信息错误！！请稍后再试...');
+                        }
+
+                      })
+        }
+
+
 
         function save() {
           $.ajax({

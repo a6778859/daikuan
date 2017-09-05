@@ -3,6 +3,7 @@ package com.daikuan.dao;
 import com.daikuan.entity.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ public interface CommonMapper {
     User selectForUser(@Param("name") String name);
 
 
-    List<Map> selectForLoanList();
+    List<Map> selectForLoanList(@Param("status") String status);
 
 
     List<Map> selectForLabelList();
@@ -23,4 +24,10 @@ public interface CommonMapper {
 
     int deleteByLoanid(int loanid);
 
+
+    int updateByLoanUpdatetime(@Param("loanid") int loanid,@Param("date") Date date);
+
+    List<Map> selectForLoanDetail();
+
+    List<Map> selectForLabelInLoanId(@Param("list") List tmpString);
 }

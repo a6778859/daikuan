@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/home")
@@ -93,13 +90,11 @@ public class HomeController extends BaseController {
     public String loan(PageLimit pageLimit, ModelMap modelMap) {
         // System.out.println("121");
         PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
-        List<Map> list = commonService.selectForLoanList();
+        List<Map> list = commonService.selectForLoanList("");
         PageInfo<Map> pageInfo = new PageInfo<Map>(list);
         long total = pageInfo.getTotal(); //获取总记录数
         modelMap.addAttribute("list", list);
         modelMap.addAttribute("total", total + "");
-
-
         //查找出关联的标签
         List<Map> labelList = commonService.selectForLabelList();
         modelMap.addAttribute("labelList", labelList);
@@ -120,7 +115,7 @@ public class HomeController extends BaseController {
             map.put("state", "1");
             map.put("msg", loan);
             //查找对应的lable
-            List<Map> checkbox=commonService.selectForRelation(Integer.parseInt(id));
+            List<Map> checkbox = commonService.selectForRelation(Integer.parseInt(id));
             map.put("checkbox", checkbox);
         } catch (Exception e) {
             map.put("state", "2");
@@ -133,6 +128,25 @@ public class HomeController extends BaseController {
     }
 
     /**
+     * 修改贷款时间
+     *
+     * @return
+     */
+    @RequestMapping(value = "/loan_time", method = RequestMethod.GET)
+    public String loan_time(String id) throws IOException {
+
+        try {
+            commonService.updateByLoanUpdatetime(Integer.parseInt(id), new Date());
+            writeSuccessJson("成功");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            writeErrorJson("异常");
+        }
+        return null;
+    }
+
+
+    /**
      * 贷款修改
      *
      * @return
@@ -141,7 +155,7 @@ public class HomeController extends BaseController {
     public String loansave(ModelMap modelMap, Loan loan) throws IOException {
         try {
 
-            String label=request.getParameter("label");
+            String label = request.getParameter("label");
             //不为空修改
             if (StringUtil.isBlank(request.getParameter("id"))) {
                 loanService.insertSelective(loan);
@@ -152,15 +166,12 @@ public class HomeController extends BaseController {
                 //删除关联的标签
                 commonService.deleteByLoanid(loan.getId());
             }
-            if(!StringUtil.isBlank(request.getParameter("label"))){
-                String[] arr=request.getParameterValues("label");
+            if (!StringUtil.isBlank(request.getParameter("label"))) {
+                String[] arr = request.getParameterValues("label");
                 List<String> list = Arrays.asList(arr);
                 //插入标签
-                commonService.insertByLoanId(loan.getId(),list);
+                commonService.insertByLoanId(loan.getId(), list);
             }
-
-
-
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -170,8 +181,6 @@ public class HomeController extends BaseController {
         writeSuccessJson("成功");
         return null;
     }
-
-
 
 
     /**
@@ -235,6 +244,10 @@ public class HomeController extends BaseController {
         writeSuccessJson("成功");
         return null;
     }
+
+
+
+
 
 
 }
