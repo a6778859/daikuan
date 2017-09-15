@@ -21,6 +21,7 @@
               <form id="user-form" name="user-form" class="form-horizontal bv-form"
               novalidate="novalidate">
                 <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="pic" id="pic">
                 <div class="box-body">
                   <div class="col-md-6">
                     <div class="form-group has-feedback">
@@ -40,7 +41,7 @@
                       </label>
                       <div class="col-sm-8">
                         <input type="text" class="form-control" id="payreturn" name="payreturn"
-                        placeholder="座机">
+                        placeholder="还款方式">
                       </div>
                     </div>
                     <div class="form-group has-feedback">
@@ -49,7 +50,7 @@
                       </label>
                       <div class="col-sm-8">
                         <input type="text" class="form-control" id="interestrate" name="interestrate"
-                        placeholder="请输入如0.05" data-bv-field="email">
+                        placeholder="请输入如0.05%" data-bv-field="email">
                         <i class="form-control-feedback" data-bv-icon-for="email" style="display: none;">
                         </i>
                       </div>
@@ -126,6 +127,20 @@
                         </div>
                       </div>
                     </div>
+
+                         <div class="form-group">
+                                          <label for="mobile" class="col-sm-3 control-label">
+                                            上传图片
+                                          </label>
+                                          <div class="col-sm-8">
+ <p><input type="file" id="myfiles" name="myfiles"  /></p>
+    <input type="button" value="上传" onclick="upload()"  />
+
+
+                                          </div>
+                                        </div>
+
+
                     <div>
                       <label for="qq" class="col-sm-3 control-label">
                         申请条件
@@ -136,6 +151,10 @@
                         </textarea>
                       </div>
                     </div>
+
+
+
+
                   </div>
                 </div>
                 <!-- /.box-body -->
@@ -297,53 +316,16 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-5">
-                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite" style="display:none">
                           Showing 1 to 10 of 57 entries
                         </div>
                       </div>
                       <div class="col-sm-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                           <ul class="pagination">
-                            <li class="paginate_button previous disabled" id="example2_previous">
-                              <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">
-                                Previous
-                              </a>
-                            </li>
-                            <li class="paginate_button active">
-                              <a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0">
-                                1
-                              </a>
-                            </li>
-                            <li class="paginate_button ">
-                              <a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0">
-                                2
-                              </a>
-                            </li>
-                            <li class="paginate_button ">
-                              <a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">
-                                3
-                              </a>
-                            </li>
-                            <li class="paginate_button ">
-                              <a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0">
-                                4
-                              </a>
-                            </li>
-                            <li class="paginate_button ">
-                              <a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0">
-                                5
-                              </a>
-                            </li>
-                            <li class="paginate_button ">
-                              <a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0">
-                                6
-                              </a>
-                            </li>
-                            <li class="paginate_button next" id="example2_next">
-                              <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">
-                                Next
-                              </a>
-                            </li>
+                             <div id="page_div">
+                                                  <%@ include file="../common/pagehelper.jsp"%>
+                                              </div>
                           </ul>
                         </div>
                       </div>
@@ -468,5 +450,29 @@
 
           })
         }
+
+        function upload(){
+            $.ajaxFileUpload
+            (
+                {
+                    url: '/home/uploadPic', //用于文件上传的服务器端请求地址
+                    secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: 'myfiles', //文件上传域的ID
+                    dataType: 'json', //返回值类型 一般设置为json
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+
+                   $("#pic").val(data.msg);
+                     alert("上传成功");
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                }
+            )
+            return false;
+        }
+
       </script>
       <%@ include file="../common/foot.jsp" %>

@@ -13,13 +13,14 @@
     <result column="label" jdbcType="VARCHAR" property="label" />
     <result column="lendingmethods" jdbcType="VARCHAR" property="lendingmethods" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.daikuan.entity.Loan">
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
     id, title, addtime, updatetime, payreturn, moenyrange, timerange, interestrate, label, 
-    lendingmethods, status
+    lendingmethods, status, pic
   </sql>
   <sql id="Blob_Column_List">
     remark
@@ -40,15 +41,15 @@
     insert into loan (id, title, addtime, 
       updatetime, payreturn, moenyrange, 
       timerange, interestrate, label, 
-      lendingmethods, status, remark
-      )
+      lendingmethods, status, pic, 
+      remark)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{payreturn,jdbcType=VARCHAR}, #{moenyrange,jdbcType=VARCHAR}, 
       #{timerange,jdbcType=VARCHAR}, #{interestrate,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
-      #{lendingmethods,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=LONGVARCHAR}
-      )
+      #{lendingmethods,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.daikuan.entity.Loan"  useGeneratedKeys="true"  keyProperty="id">
+  <insert id="insertSelective" parameterType="com.daikuan.entity.Loan" useGeneratedKeys="true"  keyProperty="id">
     insert into loan
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -83,6 +84,9 @@
       </if>
       <if test="status != null">
         status,
+      </if>
+      <if test="pic != null">
+        pic,
       </if>
       <if test="remark != null">
         remark,
@@ -122,6 +126,9 @@
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
       </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         #{remark,jdbcType=LONGVARCHAR},
       </if>
@@ -160,6 +167,9 @@
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=LONGVARCHAR},
       </if>
@@ -178,6 +188,7 @@
       label = #{label,jdbcType=VARCHAR},
       lendingmethods = #{lendingmethods,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -192,7 +203,8 @@
       interestrate = #{interestrate,jdbcType=VARCHAR},
       label = #{label,jdbcType=VARCHAR},
       lendingmethods = #{lendingmethods,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+      status = #{status,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

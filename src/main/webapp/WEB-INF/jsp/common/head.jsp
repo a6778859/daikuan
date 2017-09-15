@@ -31,7 +31,7 @@
   <script src="${TMP}bootstrap/js/bootstrap.min.js"></script>
   <!-- iCheck -->
   <script src="${TMP}plugins/iCheck/icheck.min.js"></script>
-
+  <script src="${TMP}bootstrap/js/ajaxfileupload3.js"></script>
 
   <![endif]-->
 </head>

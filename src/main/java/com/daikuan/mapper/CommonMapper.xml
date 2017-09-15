@@ -38,6 +38,11 @@
         select labelid from relation where loanid=#{loanid}
     </select>
 
+    <select id="selectForSiteList" resultType="java.util.Map">
+        select *  from site order by id desc
+    </select>
+
+
 
     <insert id="insertByLoanId">
         insert into relation (loanid,labelid)

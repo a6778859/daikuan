@@ -5,6 +5,7 @@ import com.daikuan.entity.Label;
 import com.daikuan.entity.Loan;
 import com.daikuan.entity.User;
 import com.daikuan.until.CommonUtil;
+import com.daikuan.until.Constants;
 import com.daikuan.until.PageLimit;
 import com.daikuan.until.StringUtil;
 import com.github.pagehelper.PageHelper;
@@ -16,7 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -98,6 +102,7 @@ public class HomeController extends BaseController {
         //查找出关联的标签
         List<Map> labelList = commonService.selectForLabelList();
         modelMap.addAttribute("labelList", labelList);
+        modelMap.addAttribute("pagehelper", pageInfo);
         return "/home/loan.jsp";
     }
 
@@ -144,6 +149,60 @@ public class HomeController extends BaseController {
         }
         return null;
     }
+
+
+
+    /**
+     * 上传用户头像图片
+     *
+     * @throws Exception
+     */
+
+    @RequestMapping(value = "/uploadPic", method = RequestMethod.POST)
+    public String uploadPic(@RequestParam(value = "myfiles") MultipartFile myfiles) throws Exception {
+        try {
+            String fileName = "";
+            String localName="/user/";
+            if (myfiles != null && myfiles.getSize() <= 0) {
+                writeErrorJson("文件不能为空");
+                return null;
+            } else if (myfiles.getSize() / 1024 / 1024 > 1) {
+                writeErrorJson("文件不能大于1M");
+                return null;
+            } else {
+                fileName = myfiles.getOriginalFilename();
+                String imgPostfix = fileName.substring(fileName.lastIndexOf(".") + 1);
+                if (imgPostfix.equals("jpg") || imgPostfix.equals("png")) {
+                } else {
+                    writeErrorJson("请上传jpg和png格式文件");
+                    return null;
+                }
+                // 得到服务器项目发布运行所在地址
+                String trueFileName = System.currentTimeMillis() + "." + imgPostfix;
+                // 设置存放图片文件的路径
+                String truepath = Constants.TMPURL + localName + trueFileName;
+
+                // 把文件上传至path的路径
+                File localFile = new File(truepath);
+                myfiles.transferTo(localFile);
+                writeSuccessJson("/othertemp"+localName + trueFileName);
+            }
+
+        } catch (Exception e) {
+            writeErrorJson("异常");
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     /**
@@ -194,7 +253,9 @@ public class HomeController extends BaseController {
         PageInfo<Map> pageInfo = new PageInfo<Map>(list);
         long total = pageInfo.getTotal(); //获取总记录数
         modelMap.addAttribute("list", list);
-        modelMap.addAttribute("total", total + "");
+
+        modelMap.addAttribute("pagehelper", pageInfo);
+
         return "/home/label.jsp";
     }
 

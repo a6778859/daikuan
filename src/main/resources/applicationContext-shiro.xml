@@ -35,6 +35,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
                 /home/login=anon
                 /home/out=anon
                 /home/**=roles[admin]
+
+                /logged/**=anon
+
+
             </value>
         </property>
     </bean>

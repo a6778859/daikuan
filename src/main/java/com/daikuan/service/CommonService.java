@@ -50,4 +50,12 @@ public class CommonService {
     public List<Map> selectForLabelInLoanId(List tmpString) {
         return commonMapper.selectForLabelInLoanId(tmpString);
     }
+
+
+    public List<Map> selectForSiteList() {
+        return commonMapper.selectForSiteList();
+    }
+
+
+
 }

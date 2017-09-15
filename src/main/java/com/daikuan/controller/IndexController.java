@@ -24,23 +24,24 @@ import java.util.Map;
 @RequestMapping("/")
 public class IndexController extends BaseController {
 
+    /**
+     * 首页列表
+     * @param pageLimit
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(PageLimit pageLimit) throws IOException {
-
-
         JSONObject json = new JSONObject();
-
         //获取所有的loan
         PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
         List<Map> list = commonService.selectForLoanList("1");
         //PageInfo<Map> pageInfo = new PageInfo<Map>(list);
         //long total = pageInfo.getTotal(); //获取总记录数
         String tmpString = "";
-
         List<Integer> item = new ArrayList();
         for (Map tmpMap : list) {
             item.add(Integer.parseInt(tmpMap.get("id") + ""));
-
         }
         //查找对应的label
         if (!StringUtil.isBlank(item)) {
@@ -85,20 +86,42 @@ public class IndexController extends BaseController {
         return null;
     }
 
-
+    /**
+     * 首页图片
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/pic", method = RequestMethod.GET)
-    public String pic() {
-
+    public String pic() throws IOException {
+        JSONObject json = new JSONObject();
+        List<Map> sitellist = commonService.selectForSiteList();
+        json.put("state", "1");
+        json.put("list", sitellist);
+        String jsonString = JSON.toJSONString(json);
+        System.out.println(jsonString);
+        write(jsonString);
         return null;
     }
 
-
+    /**
+     * 详细信息
+     * @param ID
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detail(String ID) throws IOException {
         JSONObject json = new JSONObject();
         try {
             Loan loan = loanService.selectByPrimaryKey(Integer.parseInt(ID));
-            json.put("list", loan);
+            json.put("title", loan.getTitle());
+            json.put("moenyrange", loan.getMoenyrange() + "");
+            json.put("timerange", loan.getTimerange() + "");
+            json.put("interestrate", loan.getInterestrate() + "");
+            json.put("lendingmethods", loan.getLendingmethods() + "");
+            json.put("payreturn", loan.getPayreturn() + "");
+            json.put("remark", loan.getRemark() + "");
+            json.put("pic", loan.getPic() + "");
             json.put("state", "1");
             json.put("applynum", "768900");
             json.put("successrate", "97%");

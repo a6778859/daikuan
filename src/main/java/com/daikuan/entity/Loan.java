@@ -25,6 +25,8 @@ public class Loan {
 
     private String status;
 
+    private String pic;
+
     private String remark;
 
     public Integer getId() {
@@ -113,6 +115,14 @@ public class Loan {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic == null ? null : pic.trim();
     }
 
     public String getRemark() {

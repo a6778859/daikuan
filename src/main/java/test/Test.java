@@ -11,5 +11,11 @@ public class Test {
         String[] arr="1".split(",");
         List<String> list = Arrays.asList(arr);
         System.out.println(list.toArray());
+
+
+
+
+
+
     }
 }

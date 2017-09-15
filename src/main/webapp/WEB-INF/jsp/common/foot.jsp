@@ -205,8 +205,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 2.2.3 -->
-<script src="${TMP}plugins/jQuery/jquery-2.2.3.min.js"></script>
+
 <!-- Bootstrap 3.3.6 -->
 <script src="${TMP}bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->

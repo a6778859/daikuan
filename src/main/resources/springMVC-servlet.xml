@@ -63,6 +63,18 @@
 
     <mvc:resources location="/images/" mapping="/images/**"/>
     <mvc:resources location="/adminlte/" mapping="/adminlte/**"/>
+
+
+    <!-- 后台 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/logged/**" />
+            <mvc:exclude-mapping path="/logged/login" />
+            <bean class="com.daikuan.interceptor.LoggedInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
     <!-- 拦截器
     <mvc:interceptors>
         <mvc:interceptor>

@@ -30,4 +30,6 @@ public interface CommonMapper {
     List<Map> selectForLoanDetail();
 
     List<Map> selectForLabelInLoanId(@Param("list") List tmpString);
+
+    List<Map> selectForSiteList();
 }
