@@ -1,2 +1,3 @@
 # Created by .ignore support plugin (hsz.mobi)
 /src/main/resources/profiles/test.properties
+/src/main/resources/profiles/prod.properties
