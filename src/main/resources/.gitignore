@@ -6,9 +6,5 @@
 .idea
 *.iml
 out
-gen### Example user template template
-### Example user template
-
-# IntelliJ project files
-
-test.properties
+gen
+profiles
