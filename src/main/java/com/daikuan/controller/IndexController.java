@@ -93,6 +93,7 @@ public class IndexController extends BaseController {
      */
     @RequestMapping(value = "/pic", method = RequestMethod.GET)
     public String pic() throws IOException {
+        System.out.println("121");
         JSONObject json = new JSONObject();
         List<Map> sitellist = commonService.selectForSiteList();
         json.put("state", "1");
