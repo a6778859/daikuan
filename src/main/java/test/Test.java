@@ -2,7 +2,7 @@ package test;
 
 import com.daikuan.until.CommonUtil;
 
-import com.daikuan.until.PhoneMessage.XuanWuMessage;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,6 @@ public class Test {
 //        String[] arr="1".split(",");
 //        List<String> list = Arrays.asList(arr);
 //        System.out.println(list.toArray());
-
 
 
     }

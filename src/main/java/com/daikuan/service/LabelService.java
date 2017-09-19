@@ -11,15 +11,15 @@ public class LabelService {
     @Autowired
     LabelMapper labelMapper;
 
-    public Label selectByPrimaryKey(int id){
+    public Label selectByPrimaryKey(int id) {
         return labelMapper.selectByPrimaryKey(id);
     }
 
-    public  int insertSelective(Label label){
+    public int insertSelective(Label label) {
         return labelMapper.insertSelective(label);
     }
 
-    public  int updateByPrimaryKeySelective(Label label){
+    public int updateByPrimaryKeySelective(Label label) {
         return labelMapper.updateByPrimaryKeySelective(label);
     }
 }

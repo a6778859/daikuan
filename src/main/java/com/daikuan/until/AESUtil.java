@@ -58,21 +58,10 @@ public class AESUtil {
             String AES_encode = new String(new BASE64Encoder().encode(byte_AES));
             //11.将字符串返回
             return AES_encode;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return null;
         }
-        //如果有错就返加nulll
-        return null;
+
     }
 
     /**
@@ -109,21 +98,10 @@ public class AESUtil {
             byte[] byte_decode = cipher.doFinal(byte_content);
             String AES_decode = new String(byte_decode, "utf-8");
             return AES_decode;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return null;
         }
-        //如果有错就返加nulll
-        return null;
+
     }
 
     public static void main(String[] args) {

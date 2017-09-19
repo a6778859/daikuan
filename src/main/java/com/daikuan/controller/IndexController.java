@@ -36,8 +36,6 @@ public class IndexController extends BaseController {
         //获取所有的loan
         PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
         List<Map> list = commonService.selectForLoanList("1");
-        //PageInfo<Map> pageInfo = new PageInfo<Map>(list);
-        //long total = pageInfo.getTotal(); //获取总记录数
         String tmpString = "";
         List<Integer> item = new ArrayList();
         for (Map tmpMap : list) {

@@ -44,8 +44,15 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AuthImageServlet</servlet-name>
+    <servlet-class>com.daikuan.until.AuthImageServlet</servlet-class>
+  </servlet>
 
-
+  <servlet-mapping>
+    <servlet-name>AuthImageServlet</servlet-name>
+    <url-pattern>/AuthImageServlet</url-pattern>
+  </servlet-mapping>
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath*:applicationContext*.xml,classpath:redis-context.xml</param-value>

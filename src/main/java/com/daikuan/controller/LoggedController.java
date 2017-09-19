@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.text.ParseException;
 
 
 @Controller
@@ -54,11 +55,23 @@ public class LoggedController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test(String token) throws IOException {
+    @RequestMapping(value = "/Vcode", method = RequestMethod.GET)
+    public String test(String PhoneStr, String Code_,String temptoken) throws IOException, ParseException {
 
+        String result = smslogService.check(PhoneStr, Code_, temptoken, request, session);
+        if (result.equals("")) {
+            writeSuccessJson("短信发送成功");
+        } else {
+            writeErrorJson(result);
+        }
         return null;
     }
+
+
+
+
+
+
 
 
 

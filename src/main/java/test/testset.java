@@ -1,9 +1,14 @@
 package test;
 
+import com.daikuan.service.SmslogService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 单元测试
@@ -16,11 +21,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 })
 public class testset {
 //122121
-
+    @Autowired
+    SmslogService smslogService;
     @org.junit.Test
-    public void index() {
-      //  System.out.println(testService.selectByPrimaryKey(1));
+    public void index() throws ParseException {
+        String phone="13326018211";
+        Date nowDate = new Date();
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 
+        String begin="2017-08-25" + " 00:00:00";
+        String end="2017-09-28" + " 23:59:59";
+        System.out.println(smslogService.getNowNum(phone)+"8859");
+
+        System.out.println(smslogService.getLast("13326018211"));
 //    @BatisGenerator
 //    public void selectForPage() {
 //        // 根据条件，按页码+每页条数分页

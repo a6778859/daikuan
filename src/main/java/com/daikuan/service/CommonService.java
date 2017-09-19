@@ -2,6 +2,7 @@ package com.daikuan.service;
 
 import com.daikuan.dao.CommonMapper;
 import com.daikuan.entity.User;
+import com.daikuan.until.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import java.util.Map;
 public class CommonService {
     @Autowired
     CommonMapper commonMapper;
+    @Autowired
+    SmslogService smslogService;
 
     public User selectForUser(String name) {
         return commonMapper.selectForUser(name);
@@ -57,5 +60,33 @@ public class CommonService {
     }
 
 
+    public String checkMobileVcode(String phone, String codePhone) {
+        if (Constants.TEST) {
+            return "";
+        }
 
+        List<Map> smslogsms = smslogService.getByPhone(phone);
+        if (smslogsms.size() > 0 && smslogsms.get(0).get("Count") == null) {
+            String remarks = smslogsms.get(0).get("Remarks") + "";
+            remarks = remarks.replace("验证码：", "").trim();
+            if (!remarks.equals(codePhone)) {
+                return "手机验证码错误";
+            } else {
+                smslogService.setCount(smslogsms.get(0).get("ID") + "");
+            }
+        } else {
+            return "手机验证码失效,请重新验证";
+        }
+
+        return "";
+
+    }
+
+    public int selectByMobileCount(String name) {
+       return commonMapper.selectByMobileCount(name);
+    }
+
+    public void updatePassword(String mobilePhone, String md5) {
+        commonMapper.updatePassword(mobilePhone,md5);
+    }
 }

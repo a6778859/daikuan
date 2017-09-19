@@ -73,4 +73,15 @@
     </select>
 
 
+
+
+    <select id="selectByMobileCount" resultType="java.lang.Integer">
+        select count(*) from user where name=#{name}
+    </select>
+
+
+
+    <update id="updatePassword">
+        update user set password=#{md5} where name=#{mobilePhone}
+    </update>
 </mapper>

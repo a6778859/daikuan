@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.daikuan.dao.SmslogMapper">
+  <resultMap id="BaseResultMap" type="com.daikuan.entity.Smslog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="CustomerID" jdbcType="CHAR" property="customerid" />
+    <result column="ReciveName" jdbcType="VARCHAR" property="recivename" />
+    <result column="MPhone" jdbcType="VARCHAR" property="mphone" />
+    <result column="SendTime" jdbcType="TIMESTAMP" property="sendtime" />
+    <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="ClassName" jdbcType="VARCHAR" property="classname" />
+    <result column="Count" jdbcType="INTEGER" property="count" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.daikuan.entity.Smslog">
+    <result column="Content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, CustomerID, ReciveName, MPhone, SendTime, Remarks, ClassName, Count
+  </sql>
+  <sql id="Blob_Column_List">
+    Content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from smslog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from smslog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.daikuan.entity.Smslog">
+    insert into smslog (id, CustomerID, ReciveName, 
+      MPhone, SendTime, Remarks, 
+      ClassName, Count, Content
+      )
+    values (#{id,jdbcType=INTEGER}, #{customerid,jdbcType=CHAR}, #{recivename,jdbcType=VARCHAR}, 
+      #{mphone,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, 
+      #{classname,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.daikuan.entity.Smslog" useGeneratedKeys="true"  keyProperty="id">
+    insert into smslog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="customerid != null">
+        CustomerID,
+      </if>
+      <if test="recivename != null">
+        ReciveName,
+      </if>
+      <if test="mphone != null">
+        MPhone,
+      </if>
+      <if test="sendtime != null">
+        SendTime,
+      </if>
+      <if test="remarks != null">
+        Remarks,
+      </if>
+      <if test="classname != null">
+        ClassName,
+      </if>
+      <if test="count != null">
+        Count,
+      </if>
+      <if test="content != null">
+        Content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=CHAR},
+      </if>
+      <if test="recivename != null">
+        #{recivename,jdbcType=VARCHAR},
+      </if>
+      <if test="mphone != null">
+        #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null">
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null">
+        #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.daikuan.entity.Smslog">
+    update smslog
+    <set>
+      <if test="customerid != null">
+        CustomerID = #{customerid,jdbcType=CHAR},
+      </if>
+      <if test="recivename != null">
+        ReciveName = #{recivename,jdbcType=VARCHAR},
+      </if>
+      <if test="mphone != null">
+        MPhone = #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null">
+        SendTime = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null">
+        ClassName = #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        Count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        Content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.daikuan.entity.Smslog">
+    update smslog
+    set CustomerID = #{customerid,jdbcType=CHAR},
+      ReciveName = #{recivename,jdbcType=VARCHAR},
+      MPhone = #{mphone,jdbcType=VARCHAR},
+      SendTime = #{sendtime,jdbcType=TIMESTAMP},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      ClassName = #{classname,jdbcType=VARCHAR},
+      Count = #{count,jdbcType=INTEGER},
+      Content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.daikuan.entity.Smslog">
+    update smslog
+    set CustomerID = #{customerid,jdbcType=CHAR},
+      ReciveName = #{recivename,jdbcType=VARCHAR},
+      MPhone = #{mphone,jdbcType=VARCHAR},
+      SendTime = #{sendtime,jdbcType=TIMESTAMP},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      ClassName = #{classname,jdbcType=VARCHAR},
+      Count = #{count,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="countSqlQueryResult" resultType="java.lang.Integer">
+     select  count(*) from smslog where  MPhone=#{phone} and SendTime &gt;= #{begin}   and  SendTime &lt;= #{end}
+  </select>
+
+  <select id="findMapBySQL" resultType="java.util.Map" >
+    select max(SendTime) as SendTime from smslog where MPhone=#{phoneStr}
+  </select>
+
+  <select id="getByPhone" resultType="java.util.Map" >
+    select * from smslog where MPhone =#{phone} and  sendTime &gt;=#{date}  order by sendTime desc limit 1
+  </select>
+
+  <update id="setCount" >
+    update smslog set Count='1' where ID=#{id}
+  </update>
+</mapper>

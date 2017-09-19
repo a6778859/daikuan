@@ -32,4 +32,8 @@ public interface CommonMapper {
     List<Map> selectForLabelInLoanId(@Param("list") List tmpString);
 
     List<Map> selectForSiteList();
+
+    int selectByMobileCount(String name);
+
+    void updatePassword(@Param("mobilePhone")String mobilePhone,@Param("md5") String md5);
 }

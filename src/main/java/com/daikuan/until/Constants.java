@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class Constants {
 
+	public static final boolean TEST=true;
 	// 非系统文件/图片 临时存放地址
 	// public static final String TMPURL =
 	// "D:\\usr\\local\\tomcat\\othertemp\\";

@@ -70,6 +70,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/logged/**" />
             <mvc:exclude-mapping path="/logged/login" />
+            <mvc:exclude-mapping path="/logged/Vcode" />
             <bean class="com.daikuan.interceptor.LoggedInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -83,5 +84,5 @@
         </mvc:interceptor>
     </mvc:interceptors>
         -->
-
+    <mvc:annotation-driven />
 </beans>
