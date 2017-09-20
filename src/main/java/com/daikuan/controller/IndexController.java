@@ -61,6 +61,7 @@ public class IndexController extends BaseController {
                 list.get(i).put("ID", id);
                 list.get(i).put("number", "1988");
                 list.get(i).put("successrate", "100");
+                list.get(i).put("title3", "一分钟完成申请，最快两小时到账");
             }
 
         }
@@ -69,12 +70,12 @@ public class IndexController extends BaseController {
         json.put("applynum", "998");
         List<Map> list2 = new ArrayList();
         Map tmpMap = new HashMap();
-        tmpMap.put("key", "13326018211");
-        tmpMap.put("value", "10000元");
+        tmpMap.put("name", "13326018211");
+        tmpMap.put("money", "10000元");
         list2.add(tmpMap);
         tmpMap = new HashMap();
-        tmpMap.put("key", "1332***211");
-        tmpMap.put("value", "10080元");
+        tmpMap.put("name", "1332***211");
+        tmpMap.put("money", "10080元");
         list2.add(tmpMap);
         json.put("list2", list2);
         json.put("list", list);
