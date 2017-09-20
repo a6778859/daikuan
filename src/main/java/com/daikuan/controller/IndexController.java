@@ -65,7 +65,9 @@ public class IndexController extends BaseController {
             }
 
         }
-
+        PageInfo<Map> pageInfo = new PageInfo<Map>(list);
+        long total = pageInfo.getTotal(); //获取总记录数
+        json.put("total", total+"");
         json.put("state", "1");
         json.put("applynum", "998");
         List<Map> list2 = new ArrayList();

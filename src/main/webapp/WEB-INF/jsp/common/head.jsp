@@ -332,7 +332,18 @@
           </ul>
         </li>
 
-        </li>
+
+         <li class="treeview">
+                  <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>用户列表</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li id="user"><a href="/home/user"><i class="fa fa-circle-o"></i>用户详细</a></li>
+                  </ul>
+                </li>
 
       </ul>
     </section>

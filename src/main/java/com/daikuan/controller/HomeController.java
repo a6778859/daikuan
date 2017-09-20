@@ -306,7 +306,22 @@ public class HomeController extends BaseController {
     }
 
 
+    /**
+     * 用户详细
+     *
+     * @return
+     */
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String user(ModelMap modelMap, String id) throws IOException {
 
+        //查找所有用户出啦admin
+
+
+        //modelMap.addAttribute("list", list);
+        //modelMap.addAttribute("pagehelper", pageInfo);
+
+        return "/home/user.jsp";
+    }
 
 
 
