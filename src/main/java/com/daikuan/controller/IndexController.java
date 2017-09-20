@@ -31,11 +31,11 @@ public class IndexController extends BaseController {
      * @throws IOException
      */
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(PageLimit pageLimit) throws IOException {
+    public String index(PageLimit pageLimit,String label) throws IOException {
         JSONObject json = new JSONObject();
         //获取所有的loan
         PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
-        List<Map> list = commonService.selectForLoanList("1");
+        List<Map> list = commonService.selectForLoanList("1",label);
         String tmpString = "";
         List<Integer> item = new ArrayList();
         for (Map tmpMap : list) {

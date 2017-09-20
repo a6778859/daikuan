@@ -27,6 +27,12 @@ public class Loan {
 
     private String pic;
 
+    private String title2;
+
+    private String material;
+
+    private String label3;
+
     private String remark;
 
     public Integer getId() {
@@ -123,6 +129,30 @@ public class Loan {
 
     public void setPic(String pic) {
         this.pic = pic == null ? null : pic.trim();
+    }
+
+    public String getTitle2() {
+        return title2;
+    }
+
+    public void setTitle2(String title2) {
+        this.title2 = title2 == null ? null : title2.trim();
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material == null ? null : material.trim();
+    }
+
+    public String getLabel3() {
+        return label3;
+    }
+
+    public void setLabel3(String label3) {
+        this.label3 = label3 == null ? null : label3.trim();
     }
 
     public String getRemark() {

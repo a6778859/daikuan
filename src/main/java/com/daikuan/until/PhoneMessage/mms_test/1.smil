@@ -1,0 +1,23 @@
+<smil>
+  <head>
+    <meta name="title" content="mms" />
+    <meta name="author" content="xuanwu" />
+    <layout>
+      <root-layout width="160" height="140" />
+      <region id="Image" width="50" height="50" left="0" top="0" fit="hidden" />
+      <region id="Text" width="50" height="50" left="0" top="50" fit="hidden" />
+    </layout>
+  </head>
+  <body>
+    <par dur="5000ms">
+      <text src="text1.txt" region="Text" />
+	  <img src="img1.jpg" region="Image" />
+    </par>
+    <par dur="5000ms">
+      <text src="text2.txt" region="Text" />
+    </par>
+    <par dur="5000ms">
+      <text src="text3.txt" region="Text" />
+    </par>
+  </body>
+</smil>

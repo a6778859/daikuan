@@ -11,7 +11,7 @@ public interface CommonMapper {
     User selectForUser(@Param("name") String name);
 
 
-    List<Map> selectForLoanList(@Param("status") String status);
+    List<Map> selectForLoanList(@Param("status") String status,@Param("label")String label);
 
 
     List<Map> selectForLabelList();

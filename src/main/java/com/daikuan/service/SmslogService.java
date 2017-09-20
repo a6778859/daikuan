@@ -5,6 +5,7 @@ import com.daikuan.dao.SmslogMapper;
 import com.daikuan.entity.Loan;
 import com.daikuan.entity.Smslog;
 import com.daikuan.until.*;
+import com.daikuan.until.PhoneMessage.XuanWuMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class SmslogService {
     SmslogMapper smslogMapper;
 
 
-    public String check(String phoneStr, String Code_, String temptoken, HttpServletRequest request, HttpSession session) throws ParseException {
+    public String check(String phoneStr, String Code_, String temptoken, HttpServletRequest request, HttpSession session) throws Exception {
         String Code = "";
         if (!StringUtil.isBlank(temptoken)&&RedisUtil.get(temptoken) != null) {
             Code = RedisUtil.get(temptoken);
@@ -81,7 +82,7 @@ public class SmslogService {
                 if (!StringUtil.isBlank(ipNumStr)) {
                     int ipNum = Integer.parseInt(ipNumStr) + 1;
                     if (ipNum > 20) {
-                        return "同一个ip当天发送短信上限";
+                        return "同一个ip发送短信上限";
                     } else {
                         RedisUtil.set(ip, ipNum + "", 43200);
                     }
@@ -92,7 +93,7 @@ public class SmslogService {
             // 发送短信证码
             String phonCode = CommonUtil.RecommendCode(6);
             String msg = "验证码：" + phonCode;
-            String result = "";
+            String result = ResultMsg.phoneMessage(XuanWuMessage.send(phoneStr,"短信验证码",msg));
             if (!result.equals("") && !Constants.TEST) {
                 return result;
             }

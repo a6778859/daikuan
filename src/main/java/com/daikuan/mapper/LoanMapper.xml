@@ -14,13 +14,16 @@
     <result column="lendingmethods" jdbcType="VARCHAR" property="lendingmethods" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="title2" jdbcType="VARCHAR" property="title2" />
+    <result column="material" jdbcType="VARCHAR" property="material" />
+    <result column="label3" jdbcType="VARCHAR" property="label3" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.daikuan.entity.Loan">
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
     id, title, addtime, updatetime, payreturn, moenyrange, timerange, interestrate, label, 
-    lendingmethods, status, pic
+    lendingmethods, status, pic, title2, material, label3
   </sql>
   <sql id="Blob_Column_List">
     remark
@@ -42,11 +45,13 @@
       updatetime, payreturn, moenyrange, 
       timerange, interestrate, label, 
       lendingmethods, status, pic, 
+      title2, material, label3, 
       remark)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{payreturn,jdbcType=VARCHAR}, #{moenyrange,jdbcType=VARCHAR}, 
       #{timerange,jdbcType=VARCHAR}, #{interestrate,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
       #{lendingmethods,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
+      #{title2,jdbcType=VARCHAR}, #{material,jdbcType=VARCHAR}, #{label3,jdbcType=VARCHAR}, 
       #{remark,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.daikuan.entity.Loan" useGeneratedKeys="true"  keyProperty="id">
@@ -87,6 +92,15 @@
       </if>
       <if test="pic != null">
         pic,
+      </if>
+      <if test="title2 != null">
+        title2,
+      </if>
+      <if test="material != null">
+        material,
+      </if>
+      <if test="label3 != null">
+        label3,
       </if>
       <if test="remark != null">
         remark,
@@ -129,6 +143,15 @@
       <if test="pic != null">
         #{pic,jdbcType=VARCHAR},
       </if>
+      <if test="title2 != null">
+        #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="material != null">
+        #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="label3 != null">
+        #{label3,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         #{remark,jdbcType=LONGVARCHAR},
       </if>
@@ -170,6 +193,15 @@
       <if test="pic != null">
         pic = #{pic,jdbcType=VARCHAR},
       </if>
+      <if test="title2 != null">
+        title2 = #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="material != null">
+        material = #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="label3 != null">
+        label3 = #{label3,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=LONGVARCHAR},
       </if>
@@ -189,6 +221,9 @@
       lendingmethods = #{lendingmethods,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
+      title2 = #{title2,jdbcType=VARCHAR},
+      material = #{material,jdbcType=VARCHAR},
+      label3 = #{label3,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -204,7 +239,10 @@
       label = #{label,jdbcType=VARCHAR},
       lendingmethods = #{lendingmethods,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
-      pic = #{pic,jdbcType=VARCHAR}
+      pic = #{pic,jdbcType=VARCHAR},
+      title2 = #{title2,jdbcType=VARCHAR},
+      material = #{material,jdbcType=VARCHAR},
+      label3 = #{label3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

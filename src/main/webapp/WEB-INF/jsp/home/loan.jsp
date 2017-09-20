@@ -78,11 +78,26 @@
                                                              最新
                                                            </option>
 
+                                                                           </select>
+                                          </div>
+                       </div>
+
+                       <div class="form-group">
+                                          <label for="telphone" class="col-sm-3 control-label">
+                                            标签2
+                                          </label>
+                                          <div class="col-sm-8">
+                                                         <select class="form-control" id='label3' name="label3">
+                                                           <option value="小额贷款">
+                                                             小额贷款
+                                                           </option>
+                                                           <option value="大额贷款">
+                                                             大额贷款
+                                                           </option>
+
                                                                                                                            </select>
                                           </div>
-                                        </div>
-
-
+                       </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group has-feedback">
@@ -141,7 +156,19 @@
                                         </div>
 
 
-                    <div>
+
+                   <div class="form-group">
+                      <label for="qq" class="col-sm-3 control-label">
+                      所需材料
+                      </label>
+                      <div class="col-sm-8">
+                        <textarea name="material" id="material" placeholder="" class="form-control"
+                        data-bv-field="remark">
+                        </textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
                       <label for="qq" class="col-sm-3 control-label">
                         申请条件
                       </label>
@@ -154,8 +181,11 @@
 
 
 
-
                   </div>
+
+
+
+
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer ">
@@ -249,10 +279,17 @@
                               aria-sort="ascending">
                                 标题
                               </th>
+                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                               colspan="1" aria-label="Browser: activate to sort column ascending">
+                                  图片
+                               </th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                               colspan="1" aria-label="Browser: activate to sort column ascending">
                                 还款方式
                               </th>
+
+
+
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                               colspan="1" aria-label="Platform(s): activate to sort column ascending">
                                 额度范围
@@ -281,6 +318,9 @@
                                 <td class="sorting_1">
                                   ${list.title}
                                 </td>
+                                <td class="sorting_1">
+                                  <img src="${list.pic}">
+                                  </td>
                                 <td>
                                   ${list.payreturn}
                                 </td>
@@ -360,10 +400,19 @@
 
                   if(this_id=="label"){
                    $("#label option[value='"+msg_+"']").attr("selected",true);
-                   }else{
+                   }else if(this_id=="label3"){
+                     $("#label3 option[value='"+msg_+"']").attr("selected",true);
+                   }
+
+                   else{
                    $("#" + this_id).val(msg_);
                    }
+
+
+
                 });
+
+                      $("#material").val(json.msg.material);
                 $("#remark").val(json.msg.remark);
                 $('#myModal').modal();
 
@@ -396,10 +445,15 @@
             $("#" + this_id).val("");
           });
           $("#remark").val("");
-          $("#status").val("1");
+
+          $("#material").val("");
           $("input[name='label2']").each(function() {
             $(this).prop('checked', false); //
           });
+
+          $('#label').prop('selectedIndex', 0);
+          $('#label3').prop('selectedIndex', 0);
+          $('#status').prop('selectedIndex', 0);
           $('#myModal').modal();
         }
 

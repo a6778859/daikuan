@@ -3,6 +3,7 @@ package com.daikuan.service;
 import com.daikuan.dao.CommonMapper;
 import com.daikuan.entity.User;
 import com.daikuan.until.Constants;
+import com.daikuan.until.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,21 @@ public class CommonService {
         return commonMapper.selectForUser(name);
     }
 
-    public List<Map> selectForLoanList(String status) {
-        return commonMapper.selectForLoanList(status);
+    public List<Map> selectForLoanList(String status, String label) {
+
+        //1位小额 2位大额
+        if (!StringUtil.isBlank(label)) {
+            if (label.equals("1")) {
+                label = "小额贷款";
+            } else if (label.equals("2")) {
+                label = "大额贷款";
+            } else {
+                label = null;
+            }
+        } else {
+            label = null;
+        }
+        return commonMapper.selectForLoanList(status, label);
     }
 
     public List<Map> selectForLabelList() {
@@ -83,10 +97,10 @@ public class CommonService {
     }
 
     public int selectByMobileCount(String name) {
-       return commonMapper.selectByMobileCount(name);
+        return commonMapper.selectByMobileCount(name);
     }
 
     public void updatePassword(String mobilePhone, String md5) {
-        commonMapper.updatePassword(mobilePhone,md5);
+        commonMapper.updatePassword(mobilePhone, md5);
     }
 }

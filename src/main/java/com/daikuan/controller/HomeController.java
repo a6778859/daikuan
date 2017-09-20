@@ -94,7 +94,7 @@ public class HomeController extends BaseController {
     public String loan(PageLimit pageLimit, ModelMap modelMap) {
         // System.out.println("121");
         PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
-        List<Map> list = commonService.selectForLoanList("");
+        List<Map> list = commonService.selectForLoanList(null,null);
         PageInfo<Map> pageInfo = new PageInfo<Map>(list);
         long total = pageInfo.getTotal(); //获取总记录数
         modelMap.addAttribute("list", list);

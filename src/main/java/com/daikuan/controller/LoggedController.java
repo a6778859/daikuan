@@ -56,7 +56,7 @@ public class LoggedController extends BaseController {
 
 
     @RequestMapping(value = "/Vcode", method = RequestMethod.GET)
-    public String test(String PhoneStr, String Code_,String temptoken) throws IOException, ParseException {
+    public String test(String PhoneStr, String Code_,String temptoken) throws Exception {
 
         String result = smslogService.check(PhoneStr, Code_, temptoken, request, session);
         if (result.equals("")) {
