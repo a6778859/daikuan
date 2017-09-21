@@ -398,36 +398,16 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="box">
-                <div class="box-header">
-                  <div class="col-sm-3">
-                    <h3 class="box-title">
-                      Table
-                    </h3>
+                <div class="box-header" >
+                  <div  style="float:right">
+                    <div >
+             						<div style="float:left">
+             						<div style="float:left"><input  placeholder="请输入手机号码" name="phone" class="form-control" type="search" likeoption="true" id="phone"></div>
+             						<button type="button" class="btn btn-primary" data-btn-type="search" onclick="find()">查询</button>
+                                    </div>
+             					</div>
                   </div>
-                  <div class="col-sm-9">
-                    <div class="dataTables_filter" id="searchDiv" style="float:right">
-                      <div class="btn-group" style="display:none">
-                        <button type="button" class="btn btn-primary" data-btn-type="search">
-                          查询
-                        </button>
-                        <button type="button" class="btn btn-default" data-btn-type="reset">
-                          重置
-                        </button>
-                      </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-default" data-btn-type="add" onclick="click2()"
-                        style="display:none">
-                          新增
-                        </button>
-                        <button style="display:none" type="button" class="btn btn-default" data-btn-type="edit">
-                          编辑
-                        </button>
-                        <button style="display:none" type="button" class="btn btn-default" data-btn-type="delete">
-                          删除
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -600,6 +580,9 @@
           })
         }
 
-
+        function find(){
+            var phone=$("#phone").val();
+            window.location.href="/home/user?phone="+phone;
+        }
       </script>
       <%@ include file="../common/foot.jsp" %>

@@ -5,10 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.daikuan.entity.Loan;
 import com.daikuan.entity.User;
-import com.daikuan.until.AESUtil;
-import com.daikuan.until.CommonUtil;
-import com.daikuan.until.PageLimit;
-import com.daikuan.until.StringUtil;
+import com.daikuan.until.*;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -84,7 +83,11 @@ public class LoggedController extends BaseController {
             int id = Integer.parseInt(request.getAttribute("customerid") + "");
             User user = userService.selectByPrimaryKey(id);
             json.put("phone", user.getName());
+            json.put("tel", Constants.TEL);
             json.put("state", "1");
+
+            List<Map> sitellist = commonService.selectForSiteList();
+            json.put("list", sitellist);
         } catch (Exception e) {
             System.out.println(e.toString());
             json.put("state", "-1");

@@ -80,7 +80,7 @@
 
 
     <select id="selectForUserNoAdmin" resultType="java.util.Map">
-        select * from user where name!='admin' <if test="phone != null"> and name=#{phone}</if> order by id desc
+        select * from user where name!='admin' <if test="phone != null and phone !=''"> and name=#{phone}</if> order by id desc
     </select>
 
 
