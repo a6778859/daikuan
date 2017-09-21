@@ -21,6 +21,7 @@ public class LoggedInterceptor extends HandlerInterceptorAdapter {
         String customerid = "";
         if (!StringUtil.isBlank(token)) {
             customerid = AESUtil.AESDecode(java.net.URLDecoder.decode(token, "utf-8"));
+           // customerid = AESUtil.AESDecode(token);
         }
         if (!StringUtil.isBlank(customerid)) {
             // 登录成功

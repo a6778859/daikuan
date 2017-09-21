@@ -1,12 +1,17 @@
 package com.daikuan.entity;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 public class User {
     private Integer id;
-
+    @Pattern(regexp="^1(3|4|5|7|8)\\d{9}$",message="请输入正确的手机号码!")
     private String name;
-
+    @NotBlank
+    @Length(min=6,max=32,message = "请输入6-32位密码")
     private String password;
 
     private Date addtime;

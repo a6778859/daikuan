@@ -12,7 +12,7 @@
 
 
     <select id="selectForUser" resultMap="UserBaseResultMap">
-        select name,password,role
+        select id,name,password,role
         from user
         where name = #{name}
     </select>

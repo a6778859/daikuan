@@ -240,7 +240,7 @@ public class StringUtil {
 	 * 获得字符。符合中文习惯。
 	 * 
 	 * @param s
-	 * @param length
+	 * @param
 	 * @return
 	 */
 	public static String getCn(String s, int len) {
@@ -490,7 +490,7 @@ public class StringUtil {
 	/**
 	 * 方法描述:把数组1,2,3转化成字符串
 	 * 
-	 * @param integerList
+	 * @param
 	 * @return
 	 */
 	public static String getSplitStringByString(List<String> StringList) {

@@ -42,6 +42,7 @@ public class LoggedController extends BaseController {
         if (user != null) {
             if (user.getPassword().equals(Password)) {
                 String token = AESUtil.AESEncode(user.getId() + "");
+                //writeSuccessJson(token);
                 writeSuccessJson(java.net.URLEncoder.encode(token, "utf-8"));
             } else {
                 writeErrorJson("账号或密码错误");
@@ -56,7 +57,7 @@ public class LoggedController extends BaseController {
 
 
     @RequestMapping(value = "/Vcode", method = RequestMethod.GET)
-    public String test(String PhoneStr, String Code_,String temptoken) throws Exception {
+    public String test(String PhoneStr, String Code_, String temptoken) throws Exception {
 
         String result = smslogService.check(PhoneStr, Code_, temptoken, request, session);
         if (result.equals("")) {
@@ -68,12 +69,11 @@ public class LoggedController extends BaseController {
     }
 
 
-
     //登录成功以后
-
 
     /**
      * 获取用户信息
+     *
      * @return
      * @throws Exception
      */
@@ -81,12 +81,14 @@ public class LoggedController extends BaseController {
     public String getUser() throws Exception {
         JSONObject json = new JSONObject();
         try {
-           User user= userService.selectByPrimaryKey(Integer.parseInt(request.getParameter("customerid")));
+            int id = Integer.parseInt(request.getAttribute("customerid") + "");
+            User user = userService.selectByPrimaryKey(id);
             json.put("phone", user.getName());
             json.put("state", "1");
-        }catch (Exception e){
+        } catch (Exception e) {
+            System.out.println(e.toString());
             json.put("state", "-1");
-            json.put("state", "异常");
+            json.put("msg", "异常");
         }
         String jsonString = JSON.toJSONString(json);
         System.out.println(jsonString);
@@ -95,11 +97,62 @@ public class LoggedController extends BaseController {
     }
 
 
+    /**
+     * 获取用户信息
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
+    public String getUserInfo() throws Exception {
+        JSONObject json = new JSONObject();
+        User user=null;
+        String jsonString="";
+        try {
+            int id = Integer.parseInt(request.getAttribute("customerid") + "");
+            user = userService.selectByPrimaryKey(id);
+            jsonString = JSON.toJSONString(user);
+            jsonString= jsonString.substring(0,jsonString.length()-1)+",\"state\":\"1\"}";
+           // jsonString.replace(jsonString.charAt(jsonString.length()-1)+"",",\"state\":\"1\"}");
+        } catch (Exception e) {
+            json.put("state", "-1");
+            json.put("msg", "异常");
+            jsonString = JSON.toJSONString(json);
+        }
+        System.out.println(jsonString);
+        write(jsonString);
+        return null;
+    }
 
 
-
-
-
-
+    /**
+     * 修改用户信息
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/updateUser", method = RequestMethod.GET)
+    public String updateUser(User user) throws Exception {
+        JSONObject json = new JSONObject();
+        try {
+            int id = Integer.parseInt(request.getAttribute("customerid") + "");
+            user.setId(id);
+            user.setStatus(null);
+            user.setPassword(null);
+            user.setRole(null);
+            user.setName(null);
+            userService.updateByPrimaryKeySelective(user);
+            json.put("msg", "修改成功");
+            json.put("state", "1");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            json.put("state", "-1");
+            json.put("msg", "异常");
+        }
+        String jsonString = JSON.toJSONString(json);
+        System.out.println(jsonString);
+        write(jsonString);
+        return null;
+    }
 
 }
