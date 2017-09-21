@@ -1,93 +1,305 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.daikuan.dao.UserMapper">
-    <resultMap id="BaseResultMap" type="com.daikuan.entity.User">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="addtime" jdbcType="TIMESTAMP" property="addtime"/>
-        <result column="role" jdbcType="VARCHAR" property="role"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        id, name, password, addtime, role
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from user
-        where id = #{id,jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from user
-        where id = #{id,jdbcType=INTEGER}
-    </delete>
-    <insert id="insert" parameterType="com.daikuan.entity.User">
-        insert into user (id, name, password,
-        addtime, role)
-        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-        #{addtime,jdbcType=TIMESTAMP}, #{role,jdbcType=VARCHAR})
-    </insert>
-    <insert id="insertSelective" parameterType="com.daikuan.entity.User">
-        insert into user
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="name != null">
-                name,
-            </if>
-            <if test="password != null">
-                password,
-            </if>
-            <if test="addtime != null">
-                addtime,
-            </if>
-            <if test="role != null">
-                role,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="name != null">
-                #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="password != null">
-                #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="addtime != null">
-                #{addtime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="role != null">
-                #{role,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.daikuan.entity.User">
-        update user
-        <set>
-            <if test="name != null">
-                name = #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="password != null">
-                password = #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="addtime != null">
-                addtime = #{addtime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="role != null">
-                role = #{role,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.daikuan.entity.User">
-        update user
-        set name = #{name,jdbcType=VARCHAR},
+  <resultMap id="BaseResultMap" type="com.daikuan.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="marriage" jdbcType="VARCHAR" property="marriage" />
+    <result column="culture" jdbcType="VARCHAR" property="culture" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="income" jdbcType="VARCHAR" property="income" />
+    <result column="monthincome" jdbcType="VARCHAR" property="monthincome" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="jobtime" jdbcType="VARCHAR" property="jobtime" />
+    <result column="insurance" jdbcType="VARCHAR" property="insurance" />
+    <result column="publicfund" jdbcType="VARCHAR" property="publicfund" />
+    <result column="creditcard" jdbcType="VARCHAR" property="creditcard" />
+    <result column="house" jdbcType="VARCHAR" property="house" />
+    <result column="car" jdbcType="VARCHAR" property="car" />
+    <result column="loan" jdbcType="VARCHAR" property="loan" />
+    <result column="credit" jdbcType="VARCHAR" property="credit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, password, addtime, status, role, realname, idcard, city, marriage, culture, 
+    job, income, monthincome, company, jobtime, insurance, publicfund, creditcard, house, 
+    car, loan, credit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.daikuan.entity.User">
+    insert into user (id, name, password, 
+      addtime, status, role, 
+      realname, idcard, city, 
+      marriage, culture, job, 
+      income, monthincome, company, 
+      jobtime, insurance, publicfund, 
+      creditcard, house, car, 
+      loan, credit)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{marriage,jdbcType=VARCHAR}, #{culture,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{income,jdbcType=VARCHAR}, #{monthincome,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{jobtime,jdbcType=VARCHAR}, #{insurance,jdbcType=VARCHAR}, #{publicfund,jdbcType=VARCHAR}, 
+      #{creditcard,jdbcType=VARCHAR}, #{house,jdbcType=VARCHAR}, #{car,jdbcType=VARCHAR}, 
+      #{loan,jdbcType=VARCHAR}, #{credit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.daikuan.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="marriage != null">
+        marriage,
+      </if>
+      <if test="culture != null">
+        culture,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="monthincome != null">
+        monthincome,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="jobtime != null">
+        jobtime,
+      </if>
+      <if test="insurance != null">
+        insurance,
+      </if>
+      <if test="publicfund != null">
+        publicfund,
+      </if>
+      <if test="creditcard != null">
+        creditcard,
+      </if>
+      <if test="house != null">
+        house,
+      </if>
+      <if test="car != null">
+        car,
+      </if>
+      <if test="loan != null">
+        loan,
+      </if>
+      <if test="credit != null">
+        credit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="culture != null">
+        #{culture,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="monthincome != null">
+        #{monthincome,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtime != null">
+        #{jobtime,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance != null">
+        #{insurance,jdbcType=VARCHAR},
+      </if>
+      <if test="publicfund != null">
+        #{publicfund,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcard != null">
+        #{creditcard,jdbcType=VARCHAR},
+      </if>
+      <if test="house != null">
+        #{house,jdbcType=VARCHAR},
+      </if>
+      <if test="car != null">
+        #{car,jdbcType=VARCHAR},
+      </if>
+      <if test="loan != null">
+        #{loan,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null">
+        #{credit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.daikuan.entity.User">
+    update user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
         addtime = #{addtime,jdbcType=TIMESTAMP},
-        role = #{role,jdbcType=VARCHAR}
-        where id = #{id,jdbcType=INTEGER}
-    </update>
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="culture != null">
+        culture = #{culture,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        income = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="monthincome != null">
+        monthincome = #{monthincome,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtime != null">
+        jobtime = #{jobtime,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance != null">
+        insurance = #{insurance,jdbcType=VARCHAR},
+      </if>
+      <if test="publicfund != null">
+        publicfund = #{publicfund,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcard != null">
+        creditcard = #{creditcard,jdbcType=VARCHAR},
+      </if>
+      <if test="house != null">
+        house = #{house,jdbcType=VARCHAR},
+      </if>
+      <if test="car != null">
+        car = #{car,jdbcType=VARCHAR},
+      </if>
+      <if test="loan != null">
+        loan = #{loan,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null">
+        credit = #{credit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.daikuan.entity.User">
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=VARCHAR},
+      culture = #{culture,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      income = #{income,jdbcType=VARCHAR},
+      monthincome = #{monthincome,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      jobtime = #{jobtime,jdbcType=VARCHAR},
+      insurance = #{insurance,jdbcType=VARCHAR},
+      publicfund = #{publicfund,jdbcType=VARCHAR},
+      creditcard = #{creditcard,jdbcType=VARCHAR},
+      house = #{house,jdbcType=VARCHAR},
+      car = #{car,jdbcType=VARCHAR},
+      loan = #{loan,jdbcType=VARCHAR},
+      credit = #{credit,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

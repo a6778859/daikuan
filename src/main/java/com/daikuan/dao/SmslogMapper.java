@@ -25,7 +25,6 @@ public interface SmslogMapper {
 
     List<Map> findMapBySQL(String phoneStr);
 
-
     List<Map> getByPhone(@Param("phone") String phone,@Param("date") String date);
 
     void setCount(String id);

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.daikuan.entity.Label;
 import com.daikuan.entity.Loan;
 import com.daikuan.entity.User;
+import com.daikuan.service.UserService;
 import com.daikuan.until.CommonUtil;
 import com.daikuan.until.Constants;
 import com.daikuan.until.PageLimit;
@@ -90,11 +91,11 @@ public class HomeController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/loan", method = RequestMethod.GET)
+    @RequestMapping(value = "/loan_", method = RequestMethod.GET)
     public String loan(PageLimit pageLimit, ModelMap modelMap) {
         // System.out.println("121");
         PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
-        List<Map> list = commonService.selectForLoanList(null,null);
+        List<Map> list = commonService.selectForLoanList(null, null);
         PageInfo<Map> pageInfo = new PageInfo<Map>(list);
         long total = pageInfo.getTotal(); //获取总记录数
         modelMap.addAttribute("list", list);
@@ -151,7 +152,6 @@ public class HomeController extends BaseController {
     }
 
 
-
     /**
      * 上传用户头像图片
      *
@@ -162,7 +162,7 @@ public class HomeController extends BaseController {
     public String uploadPic(@RequestParam(value = "myfiles") MultipartFile myfiles) throws Exception {
         try {
             String fileName = "";
-            String localName="/user/";
+            String localName = "/user/";
             if (myfiles != null && myfiles.getSize() <= 0) {
                 writeErrorJson("文件不能为空");
                 return null;
@@ -185,7 +185,7 @@ public class HomeController extends BaseController {
                 // 把文件上传至path的路径
                 File localFile = new File(truepath);
                 myfiles.transferTo(localFile);
-                writeSuccessJson("/othertemp"+localName + trueFileName);
+                writeSuccessJson("/othertemp" + localName + trueFileName);
             }
 
         } catch (Exception e) {
@@ -193,16 +193,6 @@ public class HomeController extends BaseController {
         }
         return null;
     }
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -312,15 +302,56 @@ public class HomeController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String user(ModelMap modelMap, String id) throws IOException {
-
+    public String user(ModelMap modelMap, String phone, PageLimit pageLimit) throws IOException {
+        PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
+        //查询出用户数据除啦admin
+        List<Map> list = commonService.selectForUserNoAdmin(phone);
+        PageInfo<Map> pageInfo = new PageInfo<Map>(list);
         //查找所有用户出啦admin
-
-
-        //modelMap.addAttribute("list", list);
-        //modelMap.addAttribute("pagehelper", pageInfo);
-
+        modelMap.addAttribute("list", list);
+        modelMap.addAttribute("pagehelper", pageInfo);
         return "/home/user.jsp";
+    }
+
+
+    /**
+     * 用户详细
+     *
+     * @return
+     */
+    @RequestMapping(value = "/user_id", method = RequestMethod.GET)
+    public String user_id(String id) throws IOException {
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        try {
+            User user = userService.selectByPrimaryKey(Integer.parseInt(id));
+            map.put("state", "1");
+            map.put("msg", user);
+        } catch (Exception e) {
+            map.put("state", "-1");
+            map.put("msg", "异常");
+        }
+        String jsonString = JSON.toJSONString(map);
+        System.out.println(jsonString);
+        write(jsonString);
+        return null;
+    }
+
+
+    @RequestMapping(value = "/usesave", method = RequestMethod.POST)
+    public String usesave(User user) throws IOException {
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        try {
+            if (StringUtil.isBlank(request.getParameter("id"))) {
+                userService.insertSelective(user);
+            } else {
+                userService.updateByPrimaryKeySelective(user);
+            }
+            writeSuccessJson("成功");
+        } catch (Exception e) {
+            writeErrorJson("异常");
+        }
+
+        return null;
     }
 
 

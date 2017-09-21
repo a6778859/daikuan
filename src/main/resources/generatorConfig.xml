@@ -41,7 +41,7 @@
         </javaClientGenerator>
 
         <!-- 这里是数据库的表名table_user 以及 POJO类的名字User -->
-        <table tableName="loan" domainObjectName="Loan"
+        <table tableName="user" domainObjectName="User"
                enableCountByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
 

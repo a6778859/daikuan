@@ -7,7 +7,7 @@
         <!-- -----------------------------------model -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
-          <div class="modal-content" style="width: 900px; margin: 34.5px auto;margin-top:10%">
+          <div class="modal-content" style="width: 900px; margin: 34.5px auto;margin-top:5%">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                 <li class="fa fa-remove">
@@ -26,166 +26,335 @@
                   <div class="col-md-6">
                     <div class="form-group has-feedback">
                       <label for="name" class="col-sm-3 control-label">
-                        标题
+                        姓名
                       </label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="标题"
-                        data-bv-field="name">
+                        <input type="text" class="form-control" id="realname" name="realname"
+                        placeholder="姓名" data-bv-field="name">
                         <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;">
                         </i>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="telphone" class="col-sm-3 control-label">
-                        还款方式
+                        手机号
                       </label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="payreturn" name="payreturn"
-                        placeholder="还款方式">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="手机号">
                       </div>
                     </div>
                     <div class="form-group has-feedback">
                       <label for="email" class="col-sm-3 control-label">
-                        日利率
+                        城市
                       </label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="interestrate" name="interestrate"
-                        placeholder="请输入如0.05%" data-bv-field="email">
+                        <input type="text" class="form-control" id="city" name="city" placeholder="城市"
+                        data-bv-field="email">
+                        <i class="form-control-feedback" data-bv-icon-for="email" style="display: none;">
+                        </i>
+                      </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <label for="email" class="col-sm-3 control-label">
+                        身份证
+                      </label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="idcard" name="idcard" placeholder="身份证"
+                        data-bv-field="email">
                         <i class="form-control-feedback" data-bv-icon-for="email" style="display: none;">
                         </i>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="telphone" class="col-sm-3 control-label">
-                        期限范围
+                        婚姻状况
                       </label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="timerange" name="timerange"
-                        placeholder="期限范围">
-                      </div>
-                    </div>
-
-                      <div class="form-group">
-                                          <label for="telphone" class="col-sm-3 control-label">
-                                            标签
-                                          </label>
-                                          <div class="col-sm-8">
-                                                         <select class="form-control" id='label' name="label">
-                                                           <option value="热门">
-                                                             热门
-                                                           </option>
-                                                           <option value="最新">
-                                                             最新
-                                                           </option>
-
-                                                                           </select>
-                                          </div>
-                       </div>
-
-                       <div class="form-group">
-                                          <label for="telphone" class="col-sm-3 control-label">
-                                            标签2
-                                          </label>
-                                          <div class="col-sm-8">
-                                                         <select class="form-control" id='label3' name="label3">
-                                                           <option value="小额贷款">
-                                                             小额贷款
-                                                           </option>
-                                                           <option value="大额贷款">
-                                                             大额贷款
-                                                           </option>
-
-                                                                                                                           </select>
-                                          </div>
-                       </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group has-feedback">
-                      <label for="loginName" class="col-sm-3 control-label">
-                        额度范围
-                      </label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="moenyrange" name="moenyrange"
-                        placeholder="额度范围" data-bv-field="loginName">
-                        <i class="form-control-feedback" data-bv-icon-for="loginName" style="display: none;">
-                        </i>
+                        <select class="form-control" id='marriage' name="marriage">
+                          <option value="未婚">
+                            未婚
+                          </option>
+                          <option value="已婚">
+                            已婚
+                          </option>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="mobile" class="col-sm-3 control-label">
-                        放款方式
+                      <label for="telphone" class="col-sm-3 control-label">
+                        文化程度
                       </label>
                       <div class="col-sm-8">
-                        <!--<input type="text" class="form-control" id="lendingmethods" name="lendingmethods"
-                        placeholder="放款方式" data-inputmask='"mask": "9999999999999"' data-mask>-->
-                        <input type="text" class="form-control" id="lendingmethods" name="lendingmethods"
-                        placeholder="放款方式">
+                        <select class="form-control" id='culture' name="culture">
+                          <option value="高中">
+                            高中
+                          </option>
+                          <option value="大专">
+                            大专
+                          </option>
+                          <option value="本科">
+                            本科
+                          </option>
+                          <option value="硕士">
+                            硕士
+                          </option>
+                          <option value="博士">
+                            博士
+                          </option>
+                        </select>
                       </div>
                     </div>
                     <div>
-                      <div class="form-group">
-                        <label for="mobile" class="col-sm-3 control-label">
-                          状态
+                      <div class="form-group has-feedback">
+                        <label for="name" class="col-sm-3 control-label">
+                          是否成功贷款记录
                         </label>
                         <div class="col-sm-8">
-                          <div class="col-sm-8">
-                            <select class="form-control" id='status' name="status">
-                              <option value="1">
-                                显示
-                              </option>
-                              <option value="0">
-                                隐藏
-                              </option>
-                            </select>
-                            </i>
-                          </div>
+                          <select class="form-control" id="loan" name="loan">
+                            <option value="是">
+                              是
+                            </option>
+                            <option value="否">
+                              否
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <label for="name" class="col-sm-3 control-label">
+                        状态
+                      </label>
+                      <div class="col-sm-8">
+                        <select class="form-control" id='status' name="status">
+                          <option value="1">
+                            显示
+                          </option>
+                          <option value="0">
+                            隐藏
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+  <div class="form-group has-feedback">
+                      <label for="name" class="col-sm-3 control-label">
+                    收入形势
+                      </label>
+                      <div class="col-sm-8">
+                        <select class="form-control" id='income' name="income">
+                          <option value="良好">
+                            良好
+                          </option>
+                          <option value="优秀">
+                            优秀
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="col-md-6">
+                    <div>
+                      <div class="form-group has-feedback">
+                        <label for="name" class="col-sm-3 control-label">
+                          职业身份
+                        </label>
+                        <div class="col-sm-8">
+                          <select class="form-control" id='job' name="job">
+                            <option value="上班族">
+                              上班族
+                            </option>
+                            <option value="个体户">
+                              个体户
+                            </option>
+                            <option value="企业主">
+                              企业主
+                            </option>
+                            <option value="自由职业">
+                              自由职业
+                            </option>
+                            <option value="学生">
+                              学生
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="form-group has-feedback">
+                        <label for="name" class="col-sm-3 control-label">
+                          工作时间
+                        </label>
+                        <div class="col-sm-8">
+                          <select class="form-control" id='jobtime' name="jobtime">
+                            <option value="不足3个月">
+                              不足3个月
+                            </option>
+                            <option value="3-5个月">
+                              3-5个月
+                            </option>
+                            <option value="6-12个月">
+                              6-12个月
+                            </option>
+                            <option value="1-3年">
+                              1-3年
+                            </option>
+                            <option value="4-7年">
+                              4-7年
+                            </option>
+                            <option value="7年以上">
+                              7年以上
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="form-group has-feedback">
+                        <label for="name" class="col-sm-3 control-label">
+                          6个月以上缴纳社保
+                        </label>
+                        <div class="col-sm-8">
+                          <select class="form-control" id='insurance' name="insurance">
+                            <option value="是">
+                              是
+                            </option>
+                            <option value="否">
+                              否
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="form-group has-feedback">
+                        <label for="name" class="col-sm-3 control-label">
+                          是否有信用卡
+                        </label>
+                        <div class="col-sm-8">
+                          <select class="form-control" id='creditcard' name="creditcard">
+                            <option value="是">
+                              是
+                            </option>
+                            <option value="否">
+                              否
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="form-group has-feedback">
+                        <label for="name" class="col-sm-3 control-label">
+                          名下房产
+                        </label>
+                        <div class="col-sm-8">
+                          <select class="form-control" id='house' name="house">
+                            <option value="无房产">
+                              无房产
+                            </option>
+                            <option value="商品住宅">
+                              商品住宅
+                            </option>
+                            <option value="商铺">
+                              商铺
+                            </option>
+                            <option value="办公楼">
+                              办公楼
+                            </option>
+                            <option value="厂房">
+                              厂房
+                            </option>
+                            <option value="宅基地/自建房">
+                              宅基地/自建房
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="form-group has-feedback">
+                        <label for="name" class="col-sm-3 control-label">
+                          名下车产
+                        </label>
+                        <div class="col-sm-8">
+                          <select class="form-control" id='car' name="car">
+                            <option value="无车产">
+                              无车产
+                            </option>
+                            <option value="名下有车">
+                              名下有车
+                            </option>
+                            <option value="有车但车已被抵押">
+                              有车但车已被抵押
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="form-group has-feedback">
+                        <label for="name" class="col-sm-3 control-label">
+                          信用情况
+                        </label>
+                        <div class="col-sm-8">
+                          <select class="form-control" id='credit' name="credit">
+                            <option value="无信用记录">
+                              无信用记录
+                            </option>
+                            <option value="信用记录良好">
+                              信用记录良好
+                            </option>
+                            <option value="少量逾期">
+                              少量逾期
+                            </option>
+                            <option value="征信较差">
+                              征信较差
+                            </option>
+                          </select>
                         </div>
                       </div>
                     </div>
 
-                         <div class="form-group">
-                                          <label for="mobile" class="col-sm-3 control-label">
-                                            上传图片
-                                          </label>
-                                          <div class="col-sm-8">
- <p><input type="file" id="myfiles" name="myfiles"  /></p>
-    <input type="button" value="上传" onclick="upload()"  />
-
-
-                                          </div>
-                                        </div>
-
-
-
-                   <div class="form-group">
-                      <label for="qq" class="col-sm-3 control-label">
-                      所需材料
+                    <div class="form-group has-feedback">
+                      <label for="name" class="col-sm-3 control-label">
+                        月收入
                       </label>
                       <div class="col-sm-8">
-                        <textarea name="material" id="material" placeholder="" class="form-control"
-                        data-bv-field="remark">
-                        </textarea>
+                        <input type="text" class="form-control" id="monthincome" name="monthincome"
+                        placeholder="月收入">
                       </div>
                     </div>
 
-                    <div class="form-group">
-                      <label for="qq" class="col-sm-3 control-label">
-                        申请条件
-                      </label>
-                      <div class="col-sm-8">
-                        <textarea name="remark" id="remark" placeholder="" class="form-control"
-                        data-bv-field="remark">
-                        </textarea>
+
+
+		      <div>
+                                          <div class="form-group has-feedback">
+                                            <label for="name" class="col-sm-3 control-label">
+                                              公司类型
+                                            </label>
+                                            <div class="col-sm-8">
+                                              <select class="form-control" id='company' name="company">
+                                                <option value="无">
+                                                 无
+                                                </option>
+                                                <option value="私企">
+                                                  私企
+                                                </option>
+                                                <option value="国企">
+                                                  国企
+                                                </option>
+                                              </select>
+         </div>
                       </div>
                     </div>
+
 
 
 
                   </div>
-
-
-
-
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer ">
@@ -246,7 +415,8 @@
                         </button>
                       </div>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-default" data-btn-type="add" onclick="click2()">
+                        <button type="button" class="btn btn-default" data-btn-type="add" onclick="click2()"
+                        style="display:none">
                           新增
                         </button>
                         <button style="display:none" type="button" class="btn btn-default" data-btn-type="edit">
@@ -277,29 +447,26 @@
                               <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
                               colspan="1" aria-label="Rendering engine: activate to sort column descending"
                               aria-sort="ascending">
-                                标题
+                                用户名
                               </th>
-                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                               colspan="1" aria-label="Browser: activate to sort column ascending">
-                                  图片
-                               </th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                               colspan="1" aria-label="Browser: activate to sort column ascending">
+                                手机号
+                              </th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                              style="display:none" colspan="1" aria-label="Browser: activate to sort column ascending">
                                 还款方式
                               </th>
-
-
-
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                              colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                              style="display:none" colspan="1" aria-label="Platform(s): activate to sort column ascending">
                                 额度范围
                               </th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                              colspan="1" aria-label="Engine version: activate to sort column ascending">
+                              style="display:none" colspan="1" aria-label="Engine version: activate to sort column ascending">
                                 期限范围
                               </th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                              colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                              style="display:none" colspan="1" aria-label="Platform(s): activate to sort column ascending">
                                 放款方式
                               </th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
@@ -316,35 +483,25 @@
                             <c:forEach var="list" items="${list}">
                               <tr role="row" class="odd">
                                 <td class="sorting_1">
-                                  ${list.title}
-                                </td>
-                                <td class="sorting_1">
-                                  <img src="${list.pic}">
-                                  </td>
-                                <td>
-                                  ${list.payreturn}
+                                  ${list.realname}
                                 </td>
                                 <td>
-                                  ${list.moenyrange}
+                                  ${list.name}
                                 </td>
                                 <td>
-                                  ${list.timerange}
+                                  ${list.status==1? "正常" : "被封"}
                                 </td>
                                 <td>
-                                  ${list.lendingmethods}
-                                </td>
-                                <td>
-                                  ${list.status==1? "显示" : "隐藏"}
-                                </td>
-                                <td>
-
-                                    <div onclick="update(${list.id})" style="float:left">
-                                          <a>修改</a>
-                                    </div>
-                               <div style="float:left">
-                                               &nbsp;&nbsp;&nbsp;&nbsp;
-                                                              </div>
-                                    <div onclick="update_time(${list.id})" style="float:left"><a>置顶</a></div>
+                                  <div onclick="update(${list.id})" style="float:left">
+                                    <a>
+                                      修改
+                                    </a>
+                                  </div>
+                                  <div style="float:left">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                  </div>
+                                  <div onclick="update_time(${list.id})" style="float:left">
+                                  </div>
                                 </td>
                               </tr>
                             </c:forEach>
@@ -356,16 +513,17 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-5">
-                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite" style="display:none">
+                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"
+                        style="display:none">
                           Showing 1 to 10 of 57 entries
                         </div>
                       </div>
                       <div class="col-sm-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                           <ul class="pagination">
-                             <div id="page_div">
-                                                  <%@ include file="../common/pagehelper.jsp"%>
-                                              </div>
+                            <div id="page_div">
+                              <%@ include file="../common/pagehelper.jsp" %>
+                            </div>
                           </ul>
                         </div>
                       </div>
@@ -387,44 +545,27 @@
         function update(id) {
           $.ajax({
             type: 'get',
-            url: "/home/loan_id?id=" + id,
+            url: "/home/user_id?id=" + id,
             data: "",
             dataType: 'json',
             beforeSend: function() {},
             success: function(json) {
+
               if (json.state == 1) {
                 var msg = json.msg;
                 $("#user-form :input").each(function() {
                   var this_id = $(this).attr("id");
                   var msg_ = msg[this_id];
-
-                  if(this_id=="label"){
-                   $("#label option[value='"+msg_+"']").attr("selected",true);
-                   }else if(this_id=="label3"){
-                     $("#label3 option[value='"+msg_+"']").attr("selected",true);
-                   }
-
-                   else{
-                   $("#" + this_id).val(msg_);
-                   }
+                  var jQueryObject = $("#" + this_id); //取jQuery对象，实际上它是一个数组，只不过里面只有一个元素，因为这里选择器是id
+                  var domObject = jQueryObject[0]; //从jQuery对象中得到原生的DOM对象
+                  if (domObject == "SELECT") {
+                    $("#" + this_id + " option[value='" + msg_ + "']").attr("selected", true);
+                  } else {
+                    $("#" + this_id).val(msg_);
+                  }
                 });
 
-                      $("#material").val(json.msg.material);
-                $("#remark").val(json.msg.remark);
                 $('#myModal').modal();
-
-                $("input[name='label2']").each(function() {
-                  $(this).prop('checked', false); //
-                });
-
-                var checkbox = json.checkbox;
-                for (var i = 0; i < checkbox.length; i++) {
-                  $("input:checkbox[value='" + checkbox[i].labelid + "']").prop('checked', 'checked');
-                }
-
-
-
-
               } else {
                 alert(json.msg);
               }
@@ -436,53 +577,10 @@
           })
         }
 
-        function click2() {
-          $("#user-form :input").each(function() {
-            var this_id = $(this).attr("id");
-            $("#" + this_id).val("");
-          });
-          $("#remark").val("");
-
-          $("#material").val("");
-          $("input[name='label2']").each(function() {
-            $(this).prop('checked', false); //
-          });
-
-          $('#label').prop('selectedIndex', 0);
-          $('#label3').prop('selectedIndex', 0);
-          $('#status').prop('selectedIndex', 0);
-          $('#myModal').modal();
-        }
-
-
-        function update_time(id){
-               $.ajax({
-                        type: 'get',
-                        url: "/home/loan_time?id="+id,
-                        data: "",
-                        dataType: 'json',
-                        beforeSend: function() {},
-                        success: function(json) {
-                          if (json.state == 1) {
-                            alert("成功");
-                            location.reload()
-                          } else {
-                            alert(json.msg);
-                          }
-                        },
-                        error: function(XmlHttpRequest) {
-                          alert('发送信息错误！！请稍后再试...');
-                        }
-
-                      })
-        }
-
-
-
         function save() {
           $.ajax({
             type: 'post',
-            url: "/home/loansave",
+            url: "/home/usesave",
             data: $('#user-form').serialize(),
             dataType: 'json',
             beforeSend: function() {},
@@ -502,28 +600,6 @@
           })
         }
 
-        function upload(){
-            $.ajaxFileUpload
-            (
-                {
-                    url: '/home/uploadPic', //用于文件上传的服务器端请求地址
-                    secureuri: false, //是否需要安全协议，一般设置为false
-                    fileElementId: 'myfiles', //文件上传域的ID
-                    dataType: 'json', //返回值类型 一般设置为json
-                    success: function (data, status)  //服务器成功响应处理函数
-                    {
-
-                   $("#pic").val(data.msg);
-                     alert("上传成功");
-                    },
-                    error: function (data, status, e)//服务器响应失败处理函数
-                    {
-                        alert(e);
-                    }
-                }
-            )
-            return false;
-        }
 
       </script>
       <%@ include file="../common/foot.jsp" %>

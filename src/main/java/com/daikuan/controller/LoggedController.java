@@ -62,20 +62,38 @@ public class LoggedController extends BaseController {
         if (result.equals("")) {
             writeSuccessJson("短信发送成功");
         } else {
-            writeErrorJson(result);
+            writeError(result);
         }
         return null;
     }
 
 
 
+    //登录成功以后
 
 
+    /**
+     * 获取用户信息
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getUser", method = RequestMethod.GET)
+    public String getUser() throws Exception {
+        JSONObject json = new JSONObject();
+        try {
+           User user= userService.selectByPrimaryKey(Integer.parseInt(request.getParameter("customerid")));
+            json.put("phone", user.getName());
+            json.put("state", "1");
+        }catch (Exception e){
+            json.put("state", "-1");
+            json.put("state", "异常");
+        }
+        String jsonString = JSON.toJSONString(json);
+        System.out.println(jsonString);
+        write(jsonString);
+        return null;
+    }
 
-
-
-
-    //
 
 
 

@@ -36,4 +36,6 @@ public interface CommonMapper {
     int selectByMobileCount(String name);
 
     void updatePassword(@Param("mobilePhone")String mobilePhone,@Param("md5") String md5);
+
+    List<Map> selectForUserNoAdmin(@Param("phone")String phone);
 }

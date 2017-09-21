@@ -1,8 +1,6 @@
 package com.daikuan.service;
 
-import com.daikuan.dao.SmslogMapper;
 import com.daikuan.dao.UserMapper;
-import com.daikuan.entity.Smslog;
 import com.daikuan.entity.User;
 import com.daikuan.until.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserService {
@@ -35,11 +28,24 @@ public class UserService {
            if (!result.equals("")) {
                return result;
            }
-
+           user.setStatus("1");
            user.setAddtime(new Date());
            user.setPassword(CommonUtil.getMD5(user.getPassword()));// 密码加密
            userMapper.insertSelective(user);
        }
        return "";
+    }
+
+    public User selectByPrimaryKey(int id) {
+       return userMapper.selectByPrimaryKey(id);
+    }
+
+
+    public int insertSelective(User user) {
+        return userMapper.insertSelective(user);
+    }
+
+    public void updateByPrimaryKeySelective(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
     }
 }

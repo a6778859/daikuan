@@ -103,4 +103,8 @@ public class CommonService {
     public void updatePassword(String mobilePhone, String md5) {
         commonMapper.updatePassword(mobilePhone, md5);
     }
+
+    public List<Map> selectForUserNoAdmin(String phone) {
+        return commonMapper.selectForUserNoAdmin(phone);
+    }
 }

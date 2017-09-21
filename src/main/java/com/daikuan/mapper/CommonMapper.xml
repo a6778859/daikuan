@@ -20,8 +20,8 @@
 
     <select id="selectForLoanList" resultType="java.util.Map">
         select * from loan where 1=1
-        <if test="status != null and status == '1' ">and status=${status} </if>
-        <if test="label != null ">and label3=#{label} </if>
+        <if test="status != null and status == '1' ">and status=${status}</if>
+        <if test="label != null ">and label3=#{label}</if>
         order by updatetime desc,id desc
     </select>
 
@@ -77,4 +77,11 @@
     <update id="updatePassword">
         update user set password=#{md5} where name=#{mobilePhone}
     </update>
+
+
+    <select id="selectForUserNoAdmin" resultType="java.util.Map">
+        select * from user where name!='admin' <if test="phone != null"> and name=#{phone}</if> order by id desc
+    </select>
+
+
 </mapper>
