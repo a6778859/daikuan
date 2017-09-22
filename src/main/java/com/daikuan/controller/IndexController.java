@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -54,14 +51,21 @@ public class IndexController extends BaseController {
                     labletmpMap.put(id, labletmpMap.get(id) + "," + value);
                 }
             }
-
+            Long  time=new Date().getTime()/1000000000;
             for (int i = 0; i < list.size(); i++) {
                 String id = list.get(i).get("id") + "";
                 list.get(i).put("labelList", labletmpMap.get(id + ""));
                 list.get(i).put("ID", id);
-                list.get(i).put("number", "1988");
-                list.get(i).put("successrate", "100");
+                int id_=Integer.parseInt(id);
+                list.get(i).put("number", (900+(id_%3+1)*id_+time)+"");
+                list.get(i).put("successrate", (95+id_%3)+"%");
                 list.get(i).put("title3", "一分钟完成申请，最快两小时到账");
+                list.get(i).put("interestrate", list.get(i).get("interestrate")+"%");
+                String moenyrange=list.get(i).get("moenyrange")+"";
+                if(!StringUtil.isBlank(moenyrange)&&moenyrange.indexOf("-")!=-1) {
+                    moenyrange=moenyrange.substring(moenyrange.lastIndexOf("-") + 1);
+                    list.get(i).put("moenyrange", moenyrange);
+                }
             }
 
         }
@@ -125,8 +129,12 @@ public class IndexController extends BaseController {
             json.put("remark", loan.getRemark() + "");
             json.put("pic", loan.getPic() + "");
             json.put("state", "1");
-            json.put("applynum", "768900");
-            json.put("successrate", "97%");
+            int id_=Integer.parseInt(ID);
+            Long  time=new Date().getTime()/1000000000;
+            json.put("applynum", (900+(id_%3+1)*id_+time)+"");
+            json.put("successrate", (95+id_%3)+"%");
+
+
             json.put("material", "身份证，银行卡，手机号");
 
         } catch (Exception e) {

@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Constants {
 
-	public static final boolean TEST=false;
+	public static final boolean TEST=true;
 
 	public static final String TEL="6778869";
 
