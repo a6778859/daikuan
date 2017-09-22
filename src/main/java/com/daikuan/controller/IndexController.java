@@ -148,5 +148,13 @@ public class IndexController extends BaseController {
         return null;
     }
 
-
+    /**
+     * html5 页面
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "/html5", method = RequestMethod.GET)
+    public String html5() throws IOException {
+        return "/html5/tmp.jsp";
+    }
 }

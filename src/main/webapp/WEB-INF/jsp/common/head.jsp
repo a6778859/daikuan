@@ -329,6 +329,7 @@
           <ul class="treeview-menu">
             <li id="loan_"><a href="/home/loan_"><i class="fa fa-circle-o"></i>类目列表</a></li>
             <li  id="label"><a href="/home/label"><i class="fa fa-circle-o"></i>标签列表</a></li>
+            <li  id="company"><a href="/home/company"><i class="fa fa-circle-o"></i>公司列表</a></li>
           </ul>
         </li>
 

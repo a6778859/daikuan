@@ -38,4 +38,6 @@ public interface CommonMapper {
     void updatePassword(@Param("mobilePhone")String mobilePhone,@Param("md5") String md5);
 
     List<Map> selectForUserNoAdmin(@Param("phone")String phone);
+
+    List<Map> selectForCompany();
 }

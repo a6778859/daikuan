@@ -354,6 +354,45 @@ public class HomeController extends BaseController {
         return null;
     }
 
+    /**
+     * 公司列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "/company", method = RequestMethod.GET)
+    public String company(ModelMap modelMap,  PageLimit pageLimit) throws IOException {
+        PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
+        //查询出用户数据除啦admin
+        List<Map> list = commonService.selectForCompany();
+        PageInfo<Map> pageInfo = new PageInfo<Map>(list);
+        //查找所有用户出啦admin
+        modelMap.addAttribute("list", list);
+        modelMap.addAttribute("pagehelper", pageInfo);
+        return "/home/company.jsp";
+    }
+
+    /**
+     * 公司单独列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "/company_id", method = RequestMethod.GET)
+    public String company_id(ModelMap modelMap,  String companyid) throws IOException {
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        try {
+            User user = userService.selectByPrimaryKey(Integer.parseInt(companyid));
+            map.put("state", "1");
+            map.put("msg", user);
+        } catch (Exception e) {
+            map.put("state", "-1");
+            map.put("msg", "异常");
+        }
+        String jsonString = JSON.toJSONString(map);
+        System.out.println(jsonString);
+        write(jsonString);
+        return null;
+    }
+
 
 
 }

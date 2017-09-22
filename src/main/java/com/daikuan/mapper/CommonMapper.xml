@@ -84,4 +84,15 @@
     </select>
 
 
+
+
+    <select id="selectForCompany" resultType="java.util.Map">
+        select * from company order by companyid desc
+    </select>
+
+
+
+
+
+
 </mapper>

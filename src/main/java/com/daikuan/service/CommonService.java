@@ -107,4 +107,8 @@ public class CommonService {
     public List<Map> selectForUserNoAdmin(String phone) {
         return commonMapper.selectForUserNoAdmin(phone);
     }
+
+    public List<Map> selectForCompany() {
+        return  commonMapper.selectForCompany();
+    }
 }
