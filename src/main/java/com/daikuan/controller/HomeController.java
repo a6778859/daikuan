@@ -1,6 +1,7 @@
 package com.daikuan.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.daikuan.entity.Company;
 import com.daikuan.entity.Label;
 import com.daikuan.entity.Loan;
 import com.daikuan.entity.User;
@@ -163,7 +164,7 @@ public class HomeController extends BaseController {
         try {
             String fileName = "";
             String localName = "/user/";
-            if (myfiles != null && myfiles.getSize() <= 0) {
+            if (myfiles == null || myfiles.getSize() <= 0) {
                 writeErrorJson("文件不能为空");
                 return null;
             } else if (myfiles.getSize() / 1024 / 1024 > 1) {
@@ -380,9 +381,9 @@ public class HomeController extends BaseController {
     public String company_id(ModelMap modelMap,  String companyid) throws IOException {
         Map<Object, Object> map = new HashMap<Object, Object>();
         try {
-            User user = userService.selectByPrimaryKey(Integer.parseInt(companyid));
+            Company company=companyService.selectByPrimaryKey(Integer.parseInt(companyid));
             map.put("state", "1");
-            map.put("msg", user);
+            map.put("msg", company);
         } catch (Exception e) {
             map.put("state", "-1");
             map.put("msg", "异常");
@@ -393,6 +394,25 @@ public class HomeController extends BaseController {
         return null;
     }
 
-
+    /**
+     * 公司单独列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "/companysave", method = RequestMethod.POST)
+    public String companysave(Company company,  String companyid) throws IOException {
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        try {
+            if (StringUtil.isBlank(request.getParameter("companyid"))) {
+                companyService.insertSelective(company);
+            } else {
+                companyService.updateByPrimaryKeySelective(company);
+            }
+            writeSuccessJson("成功");
+        } catch (Exception e) {
+            writeErrorJson("异常");
+        }
+        return  null;
+    }
 
 }

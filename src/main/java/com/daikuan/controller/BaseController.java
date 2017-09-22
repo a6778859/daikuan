@@ -41,6 +41,8 @@ public abstract class BaseController {
 	SmslogService smslogService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	CompanyService companyService;
 
 	@ModelAttribute
 	public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {

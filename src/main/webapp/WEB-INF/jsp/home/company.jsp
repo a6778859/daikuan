@@ -20,128 +20,42 @@
             <div class="modal-body">
               <form id="user-form" name="user-form" class="form-horizontal bv-form"
               novalidate="novalidate">
-                <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="companyid" id="companyid" value="">
                 <input type="hidden" name="pic" id="pic">
                 <div class="box-body">
                   <div class="col-md-6">
                     <div class="form-group has-feedback">
                       <label for="name" class="col-sm-3 control-label">
-                        标题
+                        公司名称
                       </label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="标题"
+                        <input type="text" class="form-control" id="companyname" name="companyname" placeholder="公司名称"
                         data-bv-field="name">
                         <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;">
                         </i>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="telphone" class="col-sm-3 control-label">
-                        还款方式
-                      </label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="payreturn" name="payreturn"
-                        placeholder="还款方式">
-                      </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                      <label for="email" class="col-sm-3 control-label">
-                        日利率
-                      </label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="interestrate" name="interestrate"
-                        placeholder="请输入如0.05%" data-bv-field="email">
-                        <i class="form-control-feedback" data-bv-icon-for="email" style="display: none;">
-                        </i>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="telphone" class="col-sm-3 control-label">
-                        期限范围
-                      </label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="timerange" name="timerange"
-                        placeholder="期限范围">
-                      </div>
-                    </div>
+
+
 
                       <div class="form-group">
-                                          <label for="telphone" class="col-sm-3 control-label">
-                                            标签
-                                          </label>
-                                          <div class="col-sm-8">
-                                                         <select class="form-control" id='label' name="label">
-                                                           <option value="热门">
-                                                             热门
-                                                           </option>
-                                                           <option value="最新">
-                                                             最新
-                                                           </option>
-
-                                                                           </select>
-                                          </div>
+                          <label for="name" class="col-sm-3 control-label">
+                                             描述
+                                           </label>
+                                           <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="remark" name="remark" placeholder="描述"
+                                             data-bv-field="name">
+                                             <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;">
+                                             </i>
+                                           </div>
                        </div>
 
-                       <div class="form-group">
-                                          <label for="telphone" class="col-sm-3 control-label">
-                                            标签2
-                                          </label>
-                                          <div class="col-sm-8">
-                                                         <select class="form-control" id='label3' name="label3">
-                                                           <option value="小额贷款">
-                                                             小额贷款
-                                                           </option>
-                                                           <option value="大额贷款">
-                                                             大额贷款
-                                                           </option>
 
-                                                                                                                           </select>
-                                          </div>
-                       </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group has-feedback">
-                      <label for="loginName" class="col-sm-3 control-label">
-                        额度范围
-                      </label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="moenyrange" name="moenyrange"
-                        placeholder="额度范围" data-bv-field="loginName">
-                        <i class="form-control-feedback" data-bv-icon-for="loginName" style="display: none;">
-                        </i>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="mobile" class="col-sm-3 control-label">
-                        放款方式
-                      </label>
-                      <div class="col-sm-8">
-                        <!--<input type="text" class="form-control" id="lendingmethods" name="lendingmethods"
-                        placeholder="放款方式" data-inputmask='"mask": "9999999999999"' data-mask>-->
-                        <input type="text" class="form-control" id="lendingmethods" name="lendingmethods"
-                        placeholder="放款方式">
-                      </div>
-                    </div>
-                    <div>
-                      <div class="form-group">
-                        <label for="mobile" class="col-sm-3 control-label">
-                          状态
-                        </label>
-                        <div class="col-sm-8">
-                          <div class="col-sm-8">
-                            <select class="form-control" id='status' name="status">
-                              <option value="1">
-                                显示
-                              </option>
-                              <option value="0">
-                                隐藏
-                              </option>
-                            </select>
-                            </i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+
+
+
 
                          <div class="form-group">
                                           <label for="mobile" class="col-sm-3 control-label">
@@ -151,33 +65,12 @@
  <p><input type="file" id="myfiles" name="myfiles"  /></p>
     <input type="button" value="上传" onclick="upload()"  />
 
-
                                           </div>
                                         </div>
 
 
 
-                   <div class="form-group">
-                      <label for="qq" class="col-sm-3 control-label">
-                      所需材料
-                      </label>
-                      <div class="col-sm-8">
-                        <textarea name="material" id="material" placeholder="" class="form-control"
-                        data-bv-field="remark">
-                        </textarea>
-                      </div>
-                    </div>
 
-                    <div class="form-group">
-                      <label for="qq" class="col-sm-3 control-label">
-                        申请条件
-                      </label>
-                      <div class="col-sm-8">
-                        <textarea name="remark" id="remark" placeholder="" class="form-control"
-                        data-bv-field="remark">
-                        </textarea>
-                      </div>
-                    </div>
 
 
 
@@ -319,7 +212,7 @@
                                   ${list.companyname}
                                 </td>
                                 <td class="sorting_1">
-                                  <img src="${list.pic}">
+                                  <img src="${list.pic}" style="width:50px;height:50px">
                                   </td>
                                 <td>
                                   ${list.remark}
@@ -382,10 +275,16 @@
             beforeSend: function() {},
             success: function(json) {
               if (json.state == 1) {
+                       var msg = json.msg;
+                      $("#user-form :input").each(function() {
+                                    var this_id = $(this).attr("id");
+                                     var msg_ = msg[this_id];
+                                      $("#" + this_id).val(msg_);
+
+                                   });
 
 
-
-
+                $('#myModal').modal();
               } else {
                 alert(json.msg);
               }
@@ -398,39 +297,22 @@
         }
 
         function click2() {
+     $("#user-form :input").each(function() {
+                                    var this_id = $(this).attr("id");
+                                      $("#" + this_id).val("");
 
+                                   });
           $('#myModal').modal();
         }
 
 
-        function update_time(id){
-               $.ajax({
-                        type: 'get',
-                        url: "/home/loan_time?id="+id,
-                        data: "",
-                        dataType: 'json',
-                        beforeSend: function() {},
-                        success: function(json) {
-                          if (json.state == 1) {
-                            alert("成功");
-                            location.reload()
-                          } else {
-                            alert(json.msg);
-                          }
-                        },
-                        error: function(XmlHttpRequest) {
-                          alert('发送信息错误！！请稍后再试...');
-                        }
-
-                      })
-        }
 
 
 
         function save() {
           $.ajax({
             type: 'post',
-            url: "/home/loansave",
+            url: "/home/companysave",
             data: $('#user-form').serialize(),
             dataType: 'json',
             beforeSend: function() {},
@@ -459,11 +341,14 @@
                     fileElementId: 'myfiles', //文件上传域的ID
                     dataType: 'json', //返回值类型 一般设置为json
                     success: function (data, status)  //服务器成功响应处理函数
-                    {
-
-                   $("#pic").val(data.msg);
-                     alert("上传成功");
-                    },
+                                    {
+                    if (data.state == 1) {
+                                    $("#pic").val(data.msg);
+                                      alert("上传成功");
+                                      }else{
+                        alert(data.msg);
+                   }
+                     },
                     error: function (data, status, e)//服务器响应失败处理函数
                     {
                         alert(e);

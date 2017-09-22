@@ -319,7 +319,7 @@
                                   ${list.title}
                                 </td>
                                 <td class="sorting_1">
-                                  <img src="${list.pic}">
+                                  <img src="${list.pic}" style="width:50px;height:50px">
                                   </td>
                                 <td>
                                   ${list.payreturn}
@@ -505,28 +505,32 @@
           })
         }
 
-        function upload(){
-            $.ajaxFileUpload
-            (
-                {
-                    url: '/home/uploadPic', //用于文件上传的服务器端请求地址
-                    secureuri: false, //是否需要安全协议，一般设置为false
-                    fileElementId: 'myfiles', //文件上传域的ID
-                    dataType: 'json', //返回值类型 一般设置为json
-                    success: function (data, status)  //服务器成功响应处理函数
-                    {
+         function upload(){
+                   $.ajaxFileUpload
+                   (
+                       {
+                           url: '/home/uploadPic', //用于文件上传的服务器端请求地址
+                           secureuri: false, //是否需要安全协议，一般设置为false
+                           fileElementId: 'myfiles', //文件上传域的ID
+                           dataType: 'json', //返回值类型 一般设置为json
+                           success: function (data, status)  //服务器成功响应处理函数
+                                           {
+                           if (data.state == 1) {
+                                           $("#pic").val(data.msg);
+                                             alert("上传成功");
+                                             }else{
+                               alert(data.msg);
+                          }
+                            },
+                           error: function (data, status, e)//服务器响应失败处理函数
+                           {
+                               alert(e);
+                           }
+                       }
+                   )
+                   return false;
+               }
 
-                   $("#pic").val(data.msg);
-                     alert("上传成功");
-                    },
-                    error: function (data, status, e)//服务器响应失败处理函数
-                    {
-                        alert(e);
-                    }
-                }
-            )
-            return false;
-        }
 
       </script>
       <%@ include file="../common/foot.jsp" %>
