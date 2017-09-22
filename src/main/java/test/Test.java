@@ -2,6 +2,7 @@ package test;
 
 import com.daikuan.until.CommonUtil;
 import com.daikuan.until.PhoneMessage.XuanWuMessage;
+import com.daikuan.until.ResultMsg;
 
 
 import java.util.Arrays;
@@ -13,7 +14,7 @@ public class Test {
 //        String[] arr="1".split(",");
 //        List<String> list = Arrays.asList(arr);
 //        System.out.println(list.toArray());
-        System.out.println( XuanWuMessage.send("13326018211","加油","加油"));
+        System.out.println( ResultMsg.phoneMessage(XuanWuMessage.send("13326018211","短信验证码","短信验证码:658756")));
 
     }
 }

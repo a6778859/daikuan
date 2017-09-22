@@ -12,6 +12,7 @@ import com.daikuan.until.PageLimit;
 import com.daikuan.until.StringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import io.swagger.models.auth.In;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -207,6 +208,13 @@ public class HomeController extends BaseController {
     @RequestMapping(value = "/loansave", method = RequestMethod.POST)
     public String loansave(ModelMap modelMap, Loan loan) throws IOException {
         try {
+            //判断companyid
+            String  companyid="";
+            if(!StringUtil.isBlank(request.getParameter("companyid"))){
+                companyid=request.getParameter("companyid");
+                Company company=companyService.selectByPrimaryKey(Integer.parseInt(companyid));
+                loan.setPic(company.getPic());
+            }
 
             //不为空修改
             if (StringUtil.isBlank(request.getParameter("id"))) {
@@ -240,8 +248,8 @@ public class HomeController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/label", method = RequestMethod.GET)
-    public String label(ModelMap modelMap, PageLimit pageLimit) throws IOException {
+    @RequestMapping(value = "/label_", method = RequestMethod.GET)
+    public String label_(ModelMap modelMap, PageLimit pageLimit) throws IOException {
         PageHelper.startPage(pageLimit.getPageNo(), pageLimit.getPageSize());
         List<Map> list = commonService.selectForLabelList();
         PageInfo<Map> pageInfo = new PageInfo<Map>(list);

@@ -3,11 +3,11 @@ package com.daikuan.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.daikuan.dao.LoanMapper;
 import com.daikuan.entity.Loan;
-import com.daikuan.service.LoanService;
 import com.daikuan.until.PageLimit;
 import com.daikuan.until.StringUtil;
+import com.esms.PostMsg;
+import com.esms.common.entity.Account;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
@@ -59,7 +59,6 @@ public class IndexController extends BaseController {
                 int id_=Integer.parseInt(id);
                 list.get(i).put("number", (900+(id_%3+1)*id_+time)+"");
                 list.get(i).put("successrate", (95+id_%3)+"%");
-                list.get(i).put("title3", "一分钟完成申请，最快两小时到账");
                 list.get(i).put("interestrate", list.get(i).get("interestrate")+"%");
                 String moenyrange=list.get(i).get("moenyrange")+"";
                 if(!StringUtil.isBlank(moenyrange)&&moenyrange.indexOf("-")!=-1) {

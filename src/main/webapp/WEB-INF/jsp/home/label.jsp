@@ -157,7 +157,7 @@
                                   ${list.status==1? "显示" : "隐藏"}
                                 </td>
                                 <td>
-                                  <a>
+                                  <a style="cursor:pointer">
                                     <div onclick="update(${list.id})">
                                       修改
                                     </div>
@@ -173,16 +173,17 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-5">
-                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite" style="display:none">
+                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"
+                        style="display:none">
                           Showing 1 to 10 of 57 entries
                         </div>
                       </div>
                       <div class="col-sm-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                           <ul class="pagination">
-                               <div id="page_div">
-                                                                              <%@ include file="../common/pagehelper.jsp"%>
-                                                                          </div>
+                            <div id="page_div">
+                              <%@ include file="../common/pagehelper.jsp" %>
+                            </div>
                           </ul>
                         </div>
                       </div>
@@ -238,7 +239,7 @@
         }
 
         function save() {
-        var student = $("input[name='label']:checked").serialize();
+          var student = $("input[name='label']:checked").serialize();
           $.ajax({
             type: 'post',
             url: "/home/labelsave",

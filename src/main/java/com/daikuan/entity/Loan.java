@@ -33,6 +33,10 @@ public class Loan {
 
     private String label3;
 
+    private String title3;
+
+    private String companyid;
+
     private String remark;
 
     public Integer getId() {
@@ -153,6 +157,22 @@ public class Loan {
 
     public void setLabel3(String label3) {
         this.label3 = label3 == null ? null : label3.trim();
+    }
+
+    public String getTitle3() {
+        return title3;
+    }
+
+    public void setTitle3(String title3) {
+        this.title3 = title3 == null ? null : title3.trim();
+    }
+
+    public String getCompanyid() {
+        return companyid;
+    }
+
+    public void setCompanyid(String companyid) {
+        this.companyid = companyid == null ? null : companyid.trim();
     }
 
     public String getRemark() {

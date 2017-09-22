@@ -29,56 +29,37 @@
                         公司名称
                       </label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="companyname" name="companyname" placeholder="公司名称"
+                        <input type="text" class="form-control" id="companyname" name="companyname"
+                        placeholder="公司名称" data-bv-field="name">
+                        <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;">
+                        </i>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name" class="col-sm-3 control-label">
+                        描述
+                      </label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="remark" name="remark" placeholder="描述"
                         data-bv-field="name">
                         <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;">
                         </i>
                       </div>
                     </div>
-
-
-
-                      <div class="form-group">
-                          <label for="name" class="col-sm-3 control-label">
-                                             描述
-                                           </label>
-                                           <div class="col-sm-8">
-                                             <input type="text" class="form-control" id="remark" name="remark" placeholder="描述"
-                                             data-bv-field="name">
-                                             <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;">
-                                             </i>
-                                           </div>
-                       </div>
-
-
                   </div>
                   <div class="col-md-6">
-
-
-
-
-                         <div class="form-group">
-                                          <label for="mobile" class="col-sm-3 control-label">
-                                            上传图片
-                                          </label>
-                                          <div class="col-sm-8">
- <p><input type="file" id="myfiles" name="myfiles"  /></p>
-    <input type="button" value="上传" onclick="upload()"  />
-
-                                          </div>
-                                        </div>
-
-
-
-
-
-
-
+                    <div class="form-group">
+                      <label for="mobile" class="col-sm-3 control-label">
+                        上传图片
+                      </label>
+                      <div class="col-sm-8">
+                        <p>
+                          <input type="file" id="myfiles" name="myfiles" />
+                        </p>
+                        <input type="button" value="上传" onclick="upload()" />
+                      </div>
+                    </div>
                   </div>
-
-
-
-
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer ">
@@ -172,31 +153,28 @@
                               aria-sort="ascending">
                                 标题
                               </th>
-                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                               colspan="1" aria-label="Browser: activate to sort column ascending">
-                                  图片
-                               </th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                              colspan="1" aria-label="Browser: activate to sort column ascending">
+                                图片
+                              </th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                               colspan="1" aria-label="Browser: activate to sort column ascending">
                                 描述
                               </th>
-
-
-
-                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" style="display:none"
-                              colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                              style="display:none" colspan="1" aria-label="Platform(s): activate to sort column ascending">
                                 额度范围
                               </th>
-                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" style="display:none"
-                              colspan="1" aria-label="Engine version: activate to sort column ascending">
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                              style="display:none" colspan="1" aria-label="Engine version: activate to sort column ascending">
                                 期限范围
                               </th>
-                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" style="display:none"
-                              colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                              style="display:none" colspan="1" aria-label="Platform(s): activate to sort column ascending">
                                 放款方式
                               </th>
-                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" style="display:none"
-                              colspan="1" aria-label="Engine version: activate to sort column ascending">
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                              style="display:none" colspan="1" aria-label="Engine version: activate to sort column ascending">
                                 状态
                               </th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
@@ -213,20 +191,19 @@
                                 </td>
                                 <td class="sorting_1">
                                   <img src="${list.pic}" style="width:50px;height:50px">
-                                  </td>
+                                </td>
                                 <td>
                                   ${list.remark}
                                 </td>
-
                                 <td>
-
-                                    <div onclick="update(${list.companyid})" style="float:left">
-                                          <a>修改</a>
-                                    </div>
-                               <div style="float:left">
-                                               &nbsp;&nbsp;&nbsp;&nbsp;
-                                                              </div>
-
+                                  <div onclick="update(${list.companyid})" style="float:left;cursor:pointer">
+                                    <a>
+                                      修改
+                                    </a>
+                                  </div>
+                                  <div style="float:left">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                  </div>
                                 </td>
                               </tr>
                             </c:forEach>
@@ -238,16 +215,17 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-5">
-                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite" style="display:none">
+                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"
+                        style="display:none">
                           Showing 1 to 10 of 57 entries
                         </div>
                       </div>
                       <div class="col-sm-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                           <ul class="pagination">
-                             <div id="page_div">
-                                                  <%@ include file="../common/pagehelper.jsp"%>
-                                              </div>
+                            <div id="page_div">
+                              <%@ include file="../common/pagehelper.jsp" %>
+                            </div>
                           </ul>
                         </div>
                       </div>
@@ -275,14 +253,13 @@
             beforeSend: function() {},
             success: function(json) {
               if (json.state == 1) {
-                       var msg = json.msg;
-                      $("#user-form :input").each(function() {
-                                    var this_id = $(this).attr("id");
-                                     var msg_ = msg[this_id];
-                                      $("#" + this_id).val(msg_);
+                var msg = json.msg;
+                $("#user-form :input").each(function() {
+                  var this_id = $(this).attr("id");
+                  var msg_ = msg[this_id];
+                  $("#" + this_id).val(msg_);
 
-                                   });
-
+                });
 
                 $('#myModal').modal();
               } else {
@@ -297,17 +274,13 @@
         }
 
         function click2() {
-     $("#user-form :input").each(function() {
-                                    var this_id = $(this).attr("id");
-                                      $("#" + this_id).val("");
+          $("#user-form :input").each(function() {
+            var this_id = $(this).attr("id");
+            $("#" + this_id).val("");
 
-                                   });
+          });
           $('#myModal').modal();
         }
-
-
-
-
 
         function save() {
           $.ajax({
@@ -332,31 +305,30 @@
           })
         }
 
-        function upload(){
-            $.ajaxFileUpload
-            (
-                {
-                    url: '/home/uploadPic', //用于文件上传的服务器端请求地址
-                    secureuri: false, //是否需要安全协议，一般设置为false
-                    fileElementId: 'myfiles', //文件上传域的ID
-                    dataType: 'json', //返回值类型 一般设置为json
-                    success: function (data, status)  //服务器成功响应处理函数
-                                    {
-                    if (data.state == 1) {
-                                    $("#pic").val(data.msg);
-                                      alert("上传成功");
-                                      }else{
-                        alert(data.msg);
-                   }
-                     },
-                    error: function (data, status, e)//服务器响应失败处理函数
-                    {
-                        alert(e);
-                    }
-                }
-            )
-            return false;
+        function upload() {
+          $.ajaxFileUpload({
+            url: '/home/uploadPic',
+            //用于文件上传的服务器端请求地址
+            secureuri: false,
+            //是否需要安全协议，一般设置为false
+            fileElementId: 'myfiles',
+            //文件上传域的ID
+            dataType: 'json',
+            //返回值类型 一般设置为json
+            success: function(data, status) //服务器成功响应处理函数
+            {
+              if (data.state == 1) {
+                $("#pic").val(data.msg);
+                alert("上传成功");
+              } else {
+                alert(data.msg);
+              }
+            },
+            error: function(data, status, e) //服务器响应失败处理函数
+            {
+              alert(e);
+            }
+ })
         }
-
       </script>
       <%@ include file="../common/foot.jsp" %>

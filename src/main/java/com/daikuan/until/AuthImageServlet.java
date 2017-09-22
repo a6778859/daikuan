@@ -92,6 +92,9 @@ public class AuthImageServlet extends HttpServlet {
 		String temptoken = request.getParameter("temptoken");
 		if (temptoken != null && temptoken.length() == 36) {
 			RedisUtil.set(temptoken,sRand,5 * 60);
+		}else {
+			HttpSession session = request.getSession(true);
+			session.setAttribute("Code", sRand);
 		}
 
 		g.dispose();

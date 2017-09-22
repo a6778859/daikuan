@@ -17,13 +17,15 @@
     <result column="title2" jdbcType="VARCHAR" property="title2" />
     <result column="material" jdbcType="VARCHAR" property="material" />
     <result column="label3" jdbcType="VARCHAR" property="label3" />
+    <result column="title3" jdbcType="VARCHAR" property="title3" />
+    <result column="companyid" jdbcType="VARCHAR" property="companyid" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.daikuan.entity.Loan">
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
     id, title, addtime, updatetime, payreturn, moenyrange, timerange, interestrate, label, 
-    lendingmethods, status, pic, title2, material, label3
+    lendingmethods, status, pic, title2, material, label3, title3, companyid
   </sql>
   <sql id="Blob_Column_List">
     remark
@@ -46,13 +48,15 @@
       timerange, interestrate, label, 
       lendingmethods, status, pic, 
       title2, material, label3, 
-      remark)
+      title3, companyid, remark
+      )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{payreturn,jdbcType=VARCHAR}, #{moenyrange,jdbcType=VARCHAR}, 
       #{timerange,jdbcType=VARCHAR}, #{interestrate,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
       #{lendingmethods,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
       #{title2,jdbcType=VARCHAR}, #{material,jdbcType=VARCHAR}, #{label3,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=LONGVARCHAR})
+      #{title3,jdbcType=VARCHAR}, #{companyid,jdbcType=VARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.daikuan.entity.Loan" useGeneratedKeys="true"  keyProperty="id">
     insert into loan
@@ -101,6 +105,12 @@
       </if>
       <if test="label3 != null">
         label3,
+      </if>
+      <if test="title3 != null">
+        title3,
+      </if>
+      <if test="companyid != null">
+        companyid,
       </if>
       <if test="remark != null">
         remark,
@@ -152,6 +162,12 @@
       <if test="label3 != null">
         #{label3,jdbcType=VARCHAR},
       </if>
+      <if test="title3 != null">
+        #{title3,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         #{remark,jdbcType=LONGVARCHAR},
       </if>
@@ -202,6 +218,12 @@
       <if test="label3 != null">
         label3 = #{label3,jdbcType=VARCHAR},
       </if>
+      <if test="title3 != null">
+        title3 = #{title3,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        companyid = #{companyid,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=LONGVARCHAR},
       </if>
@@ -224,6 +246,8 @@
       title2 = #{title2,jdbcType=VARCHAR},
       material = #{material,jdbcType=VARCHAR},
       label3 = #{label3,jdbcType=VARCHAR},
+      title3 = #{title3,jdbcType=VARCHAR},
+      companyid = #{companyid,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -242,7 +266,9 @@
       pic = #{pic,jdbcType=VARCHAR},
       title2 = #{title2,jdbcType=VARCHAR},
       material = #{material,jdbcType=VARCHAR},
-      label3 = #{label3,jdbcType=VARCHAR}
+      label3 = #{label3,jdbcType=VARCHAR},
+      title3 = #{title3,jdbcType=VARCHAR},
+      companyid = #{companyid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

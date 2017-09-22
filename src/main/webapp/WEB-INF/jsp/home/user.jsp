@@ -472,7 +472,7 @@
                                   ${list.status==1? "正常" : "被封"}
                                 </td>
                                 <td>
-                                  <div onclick="update(${list.id})" style="float:left">
+                                  <div onclick="update(${list.id})" style="float:left;cursor:pointer">
                                     <a>
                                       修改
                                     </a>

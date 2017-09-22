@@ -6,6 +6,7 @@ import com.daikuan.entity.Loan;
 import com.daikuan.entity.Smslog;
 import com.daikuan.until.*;
 import com.daikuan.until.PhoneMessage.XuanWuMessage;
+import com.esms.common.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +27,14 @@ public class SmslogService {
 
     public String check(String phoneStr, String Code_, String temptoken, HttpServletRequest request, HttpSession session) throws Exception {
         String Code = "";
-        if (!StringUtil.isBlank(temptoken)&&RedisUtil.get(temptoken) != null) {
-            Code = RedisUtil.get(temptoken);
+        if (temptoken == null) {
+            Code = (String) session.getAttribute("Code");
+        } else {
+            if (!StringUtil.isBlank(temptoken)&&RedisUtil.get(temptoken) != null) {
+                Code = RedisUtil.get(temptoken);
+            }
         }
+
         if (!StringUtil.isBlank(Code) && !StringUtil.isBlank(Code_)) {
             if (!Code.toLowerCase().equals((Code_.toLowerCase()))) {
                 return "验证码错误";
@@ -81,7 +87,7 @@ public class SmslogService {
             if (!StringUtil.isBlank(ip)) {
                 if (!StringUtil.isBlank(ipNumStr)) {
                     int ipNum = Integer.parseInt(ipNumStr) + 1;
-                    if (ipNum > 20) {
+                    if (ipNum > 200) {
                         return "同一个ip发送短信上限";
                     } else {
                         RedisUtil.set(ip, ipNum + "", 43200);
@@ -90,10 +96,14 @@ public class SmslogService {
                     RedisUtil.set(ip, 1 + "", 43200);
                 }
             }
+
+
+
             // 发送短信证码
             String phonCode = CommonUtil.RecommendCode(6);
             String msg = "验证码：" + phonCode;
             String result = ResultMsg.phoneMessage(XuanWuMessage.send(phoneStr,"短信验证码",msg));
+            //String result=ResultMsg.phoneMessage(XuanWuMessage.send("13326018211","短信验证码","短信验证码:658756"));
             if (!result.equals("") && !Constants.TEST) {
                 return result;
             }

@@ -34,22 +34,13 @@
                         </i>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="telphone" class="col-sm-3 control-label">
-                        还款方式
-                      </label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="payreturn" name="payreturn"
-                        placeholder="还款方式">
-                      </div>
-                    </div>
                     <div class="form-group has-feedback">
                       <label for="email" class="col-sm-3 control-label">
                         日利率
                       </label>
                       <div class="col-sm-8">
                         <input type="text" class="form-control" id="interestrate" name="interestrate"
-                        placeholder="请输入如0.05%" data-bv-field="email">
+                        placeholder="请输入如0.05" data-bv-field="email">
                         <i class="form-control-feedback" data-bv-icon-for="email" style="display: none;">
                         </i>
                       </div>
@@ -63,42 +54,6 @@
                         placeholder="期限范围">
                       </div>
                     </div>
-
-                      <div class="form-group">
-                                          <label for="telphone" class="col-sm-3 control-label">
-                                            标签
-                                          </label>
-                                          <div class="col-sm-8">
-                                                         <select class="form-control" id='label' name="label">
-                                                           <option value="热门">
-                                                             热门
-                                                           </option>
-                                                           <option value="最新">
-                                                             最新
-                                                           </option>
-
-                                                                           </select>
-                                          </div>
-                       </div>
-
-                       <div class="form-group">
-                                          <label for="telphone" class="col-sm-3 control-label">
-                                            标签2
-                                          </label>
-                                          <div class="col-sm-8">
-                                                         <select class="form-control" id='label3' name="label3">
-                                                           <option value="小额贷款">
-                                                             小额贷款
-                                                           </option>
-                                                           <option value="大额贷款">
-                                                             大额贷款
-                                                           </option>
-
-                                                                                                                           </select>
-                                          </div>
-                       </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="form-group has-feedback">
                       <label for="loginName" class="col-sm-3 control-label">
                         额度范围
@@ -111,14 +66,85 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <label for="telphone" class="col-sm-3 control-label">
+                        标签
+                      </label>
+                      <div class="col-sm-8">
+                        <select class="form-control" id='companyid' name="companyid">
+                          <c:forEach var="list" items="${companyList}">
+                            <option value="${list.companyid}">
+                              ${list.companyname}
+                            </option>
+                          </c:forEach>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="telphone" class="col-sm-3 control-label">
+                        标签
+                      </label>
+                      <div class="col-sm-8">
+                        <select class="form-control" id='label' name="label">
+                          <option value="热门">
+                            热门
+                          </option>
+                          <option value="最新">
+                            最新
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="telphone" class="col-sm-3 control-label">
+                        标签2
+                      </label>
+                      <div class="col-sm-8">
+                        <select class="form-control" id='label3' name="label3">
+                          <option value="小额贷款">
+                            小额贷款
+                          </option>
+                          <option value="大额贷款">
+                            大额贷款
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="telphone" class="col-sm-3 control-label">
+                        还款方式
+                      </label>
+                      <div class="col-sm-8">
+                        <select class="form-control" id='payreturn' name="payreturn">
+                          <option value="APP内还款">
+                            APP内还款
+                          </option>
+                          <option value="支付宝还款">
+                            支付宝还款
+                          </option>
+                          <option value="银行卡还款">
+                            银行卡还款
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="mobile" class="col-sm-3 control-label">
                         放款方式
                       </label>
                       <div class="col-sm-8">
-                        <!--<input type="text" class="form-control" id="lendingmethods" name="lendingmethods"
-                        placeholder="放款方式" data-inputmask='"mask": "9999999999999"' data-mask>-->
-                        <input type="text" class="form-control" id="lendingmethods" name="lendingmethods"
-                        placeholder="放款方式">
+                        <select class="form-control" id='lendingmethods' name="lendingmethods">
+                          <option value="APP内放款">
+                            APP内放款
+                          </option>
+                          <option value="支付宝放款">
+                            支付宝放款
+                          </option>
+                          <option value="银行卡放款">
+                            银行卡放款
+                          </option>
+                        </select>
                       </div>
                     </div>
                     <div>
@@ -127,65 +153,31 @@
                           状态
                         </label>
                         <div class="col-sm-8">
-                          <div class="col-sm-8">
-                            <select class="form-control" id='status' name="status">
-                              <option value="1">
-                                显示
-                              </option>
-                              <option value="0">
-                                隐藏
-                              </option>
-                            </select>
-                            </i>
-                          </div>
+                          <select class="form-control" id='status' name="status">
+                            <option value="1">
+                              显示
+                            </option>
+                            <option value="0">
+                              隐藏
+                            </option>
+                          </select>
                         </div>
                       </div>
                     </div>
-
-                    <div>
-                                          <div class="form-group">
-                                            <label for="mobile" class="col-sm-3 control-label">
-                                              所属公司
-                                            </label>
-                                            <div class="col-sm-8">
-                                              <div class="col-sm-8">
-                                                <select class="form-control" id='companyid' name="companyid">
-                                                       <c:forEach var="list" items="${companyList}">
-
-                                                               <option value="${list.companyid}">
-                                                             ${list.companyname}
-                                                                          </option>
-                                                        </c:forEach>
-
-                                                </select>
-                                                </i>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-
-
-
-
-
-
-                         <div class="form-group" style="display:none">
-                                          <label for="mobile" class="col-sm-3 control-label">
-                                            上传图片
-                                          </label>
-                                          <div class="col-sm-8">
-                            <p><input type="file" id="myfiles" name="myfiles"  /></p>
-                        <input type="button" value="上传" onclick="upload()"  />
-
-
-                                          </div>
-                                        </div>
-
-
-
-                   <div class="form-group">
+                    <div class="form-group" style="display:none">
+                      <label for="mobile" class="col-sm-3 control-label">
+                        上传图片
+                      </label>
+                      <div class="col-sm-8">
+                        <p>
+                          <input type="file" id="myfiles" name="myfiles" />
+                        </p>
+                        <input type="button" value="上传" onclick="upload()" />
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="qq" class="col-sm-3 control-label">
-                      所需材料
+                        所需材料
                       </label>
                       <div class="col-sm-8">
                         <textarea name="material" id="material" placeholder="" class="form-control"
@@ -193,7 +185,6 @@
                         </textarea>
                       </div>
                     </div>
-
                     <div class="form-group">
                       <label for="qq" class="col-sm-3 control-label">
                         申请条件
@@ -204,14 +195,17 @@
                         </textarea>
                       </div>
                     </div>
-
-
-
+                    <div class="form-group">
+                      <label for="qq" class="col-sm-3 control-label">
+                        申请和到账时间描述
+                      </label>
+                      <div class="col-sm-8">
+                        <textarea name="title3" id="title3" placeholder="" class="form-control"
+                        data-bv-field="remark">
+                        </textarea>
+                      </div>
+                    </div>
                   </div>
-
-
-
-
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer ">
@@ -305,17 +299,14 @@
                               aria-sort="ascending">
                                 标题
                               </th>
-                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                               colspan="1" aria-label="Browser: activate to sort column ascending">
-                                  图片
-                               </th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                              colspan="1" aria-label="Browser: activate to sort column ascending">
+                                图片
+                              </th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                               colspan="1" aria-label="Browser: activate to sort column ascending">
                                 还款方式
                               </th>
-
-
-
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                               colspan="1" aria-label="Platform(s): activate to sort column ascending">
                                 额度范围
@@ -346,7 +337,7 @@
                                 </td>
                                 <td class="sorting_1">
                                   <img src="${list.pic}" style="width:50px;height:50px">
-                                  </td>
+                                </td>
                                 <td>
                                   ${list.payreturn}
                                 </td>
@@ -363,14 +354,19 @@
                                   ${list.status==1? "显示" : "隐藏"}
                                 </td>
                                 <td>
-
-                                    <div onclick="update(${list.id})" style="float:left">
-                                          <a>修改</a>
-                                    </div>
-                               <div style="float:left">
-                                               &nbsp;&nbsp;&nbsp;&nbsp;
-                                                              </div>
-                                    <div onclick="update_time(${list.id})" style="float:left"><a>置顶</a></div>
+                                  <div onclick="update(${list.id})" style="float:left">
+                                    <a style="cursor:pointer">
+                                      修改
+                                    </a>
+                                  </div>
+                                  <div style="float:left">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                  </div>
+                                  <div onclick="update_time(${list.id})" style="float:left">
+                                    <a style="cursor:pointer">
+                                      置顶
+                                    </a>
+                                  </div>
                                 </td>
                               </tr>
                             </c:forEach>
@@ -382,16 +378,17 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-5">
-                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite" style="display:none">
+                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"
+                        style="display:none">
                           Showing 1 to 10 of 57 entries
                         </div>
                       </div>
                       <div class="col-sm-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                           <ul class="pagination">
-                             <div id="page_div">
-                                                  <%@ include file="../common/pagehelper.jsp"%>
-                                              </div>
+                            <div id="page_div">
+                              <%@ include file="../common/pagehelper.jsp" %>
+                            </div>
                           </ul>
                         </div>
                       </div>
@@ -423,36 +420,25 @@
                 $("#user-form :input").each(function() {
                   var this_id = $(this).attr("id");
                   var msg_ = msg[this_id];
-
-                  if(this_id=="label"){
-                   $("#label option[value='"+msg_+"']").attr("selected",true);
-                   }else if(this_id=="label3"){
-                     $("#label3 option[value='"+msg_+"']").attr("selected",true);
-                   }
-
-                   else{
-                   $("#" + this_id).val(msg_);
-                   }
-
-
+                  var jQueryObject = $("#" + this_id); //取jQuery对象，实际上它是一个数组，只不过里面只有一个元素，因为这里选择器是id
+                  var domObject = jQueryObject[0]; //从jQuery对象中得到原生的DOM对象
+                  if (domObject == "SELECT") {
+                    $("#" + this_id + " option[value='" + msg_ + "']").attr("selected", true);
+                  } else {
+                    $("#" + this_id).val(msg_);
+                  }
 
                 });
-
-                      $("#material").val(json.msg.material);
-                $("#remark").val(json.msg.remark);
-                $('#myModal').modal();
 
                 $("input[name='label2']").each(function() {
                   $(this).prop('checked', false); //
                 });
-
                 var checkbox = json.checkbox;
                 for (var i = 0; i < checkbox.length; i++) {
                   $("input:checkbox[value='" + checkbox[i].labelid + "']").prop('checked', 'checked');
                 }
 
-
-
+                $('#myModal').modal();
 
               } else {
                 alert(json.msg);
@@ -470,43 +456,36 @@
             var this_id = $(this).attr("id");
             $("#" + this_id).val("");
           });
-          $("#remark").val("");
 
           $("#material").val("");
           $("input[name='label2']").each(function() {
             $(this).prop('checked', false); //
           });
 
-          $('#label').prop('selectedIndex', 0);
-          $('#label3').prop('selectedIndex', 0);
-          $('#status').prop('selectedIndex', 0);
           $('#myModal').modal();
         }
 
+        function update_time(id) {
+          $.ajax({
+            type: 'get',
+            url: "/home/loan_time?id=" + id,
+            data: "",
+            dataType: 'json',
+            beforeSend: function() {},
+            success: function(json) {
+              if (json.state == 1) {
+                alert("成功");
+                location.reload()
+              } else {
+                alert(json.msg);
+              }
+            },
+            error: function(XmlHttpRequest) {
+              alert('发送信息错误！！请稍后再试...');
+            }
 
-        function update_time(id){
-               $.ajax({
-                        type: 'get',
-                        url: "/home/loan_time?id="+id,
-                        data: "",
-                        dataType: 'json',
-                        beforeSend: function() {},
-                        success: function(json) {
-                          if (json.state == 1) {
-                            alert("成功");
-                            location.reload()
-                          } else {
-                            alert(json.msg);
-                          }
-                        },
-                        error: function(XmlHttpRequest) {
-                          alert('发送信息错误！！请稍后再试...');
-                        }
-
-                      })
+          })
         }
-
-
 
         function save() {
           $.ajax({
@@ -531,35 +510,32 @@
           })
         }
 
-         function upload(){
+        function upload() {
 
+          $.ajaxFileUpload({
+            url: '/home/uploadPic',
+            //用于文件上传的服务器端请求地址
+            secureuri: false,
+            //是否需要安全协议，一般设置为false
+            fileElementId: 'myfiles',
+            //文件上传域的ID
+            dataType: 'json',
+            //返回值类型 一般设置为json
+            success: function(data, status) //服务器成功响应处理函数
+            {
+              if (data.state == 1) {
+                $("#pic").val(data.msg);
+                alert("上传成功");
+              } else {
+                alert(data.msg);
+              }
+            },
+            error: function(data, status, e) //服务器响应失败处理函数
+            {
+              alert(e);
+            }
+          })
 
-
-                   $.ajaxFileUpload
-                   (
-                       {
-                           url: '/home/uploadPic', //用于文件上传的服务器端请求地址
-                           secureuri: false, //是否需要安全协议，一般设置为false
-                           fileElementId: 'myfiles', //文件上传域的ID
-                           dataType: 'json', //返回值类型 一般设置为json
-                           success: function (data, status)  //服务器成功响应处理函数
-                                           {
-                           if (data.state == 1) {
-                                           $("#pic").val(data.msg);
-                                             alert("上传成功");
-                                             }else{
-                               alert(data.msg);
-                          }
-                            },
-                           error: function (data, status, e)//服务器响应失败处理函数
-                           {
-                               alert(e);
-                           }
-                       }
-                   )
-                   return false;
-               }
-
-
+        }
       </script>
       <%@ include file="../common/foot.jsp" %>
