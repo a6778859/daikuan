@@ -105,6 +105,9 @@ public class HomeController extends BaseController {
         List<Map> labelList = commonService.selectForLabelList();
         modelMap.addAttribute("labelList", labelList);
         modelMap.addAttribute("pagehelper", pageInfo);
+
+        List<Map> companyList = commonService.selectForCompany();
+        modelMap.addAttribute("companyList", companyList);
         return "/home/loan.jsp";
     }
 

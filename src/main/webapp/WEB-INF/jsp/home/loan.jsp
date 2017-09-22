@@ -21,7 +21,6 @@
               <form id="user-form" name="user-form" class="form-horizontal bv-form"
               novalidate="novalidate">
                 <input type="hidden" name="id" id="id" value="">
-                <input type="hidden" name="pic" id="pic">
                 <div class="box-body">
                   <div class="col-md-6">
                     <div class="form-group has-feedback">
@@ -143,13 +142,40 @@
                       </div>
                     </div>
 
-                         <div class="form-group">
+                    <div>
+                                          <div class="form-group">
+                                            <label for="mobile" class="col-sm-3 control-label">
+                                              所属公司
+                                            </label>
+                                            <div class="col-sm-8">
+                                              <div class="col-sm-8">
+                                                <select class="form-control" id='companyid' name="companyid">
+                                                       <c:forEach var="list" items="${companyList}">
+
+                                                               <option value="${list.companyid}">
+                                                             ${list.companyname}
+                                                                          </option>
+                                                        </c:forEach>
+
+                                                </select>
+                                                </i>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+
+
+
+
+
+                         <div class="form-group" style="display:none">
                                           <label for="mobile" class="col-sm-3 control-label">
                                             上传图片
                                           </label>
                                           <div class="col-sm-8">
- <p><input type="file" id="myfiles" name="myfiles"  /></p>
-    <input type="button" value="上传" onclick="upload()"  />
+                            <p><input type="file" id="myfiles" name="myfiles"  /></p>
+                        <input type="button" value="上传" onclick="upload()"  />
 
 
                                           </div>
@@ -506,6 +532,9 @@
         }
 
          function upload(){
+
+
+
                    $.ajaxFileUpload
                    (
                        {
