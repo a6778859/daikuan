@@ -72,10 +72,10 @@ public class IndexController extends BaseController {
         long total = pageInfo.getTotal(); //获取总记录数
         json.put("total", total+"");
         json.put("state", "1");
-        json.put("applynum", "998");
+        json.put("applynum", "500");
         List<Map> list2 = new ArrayList();
         Map tmpMap = new HashMap();
-        tmpMap.put("name", "13326018211");
+        tmpMap.put("name", "13958***259");
         tmpMap.put("money", "10000元");
         list2.add(tmpMap);
         tmpMap = new HashMap();
