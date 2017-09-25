@@ -84,10 +84,10 @@ public class SmslogService {
             String ip = CommonUtil.getRealIp(request);
             // 同一个ip在12小时发送的短信数量
             String ipNumStr = RedisUtil.get(ip);
-            if (!StringUtil.isBlank(ip)) {
+            if (!StringUtil.isBlank(ip)&&!"null".equals(ip)) {
                 if (!StringUtil.isBlank(ipNumStr)) {
                     int ipNum = Integer.parseInt(ipNumStr) + 1;
-                    if (ipNum > 200) {
+                    if (ipNum > 30) {
                         return "同一个ip发送短信上限";
                     } else {
                         RedisUtil.set(ip, ipNum + "", 43200);

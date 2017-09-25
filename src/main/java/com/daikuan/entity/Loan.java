@@ -37,6 +37,8 @@ public class Loan {
 
     private String companyid;
 
+    private String url;
+
     private String remark;
 
     public Integer getId() {
@@ -173,6 +175,14 @@ public class Loan {
 
     public void setCompanyid(String companyid) {
         this.companyid = companyid == null ? null : companyid.trim();
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
     }
 
     public String getRemark() {

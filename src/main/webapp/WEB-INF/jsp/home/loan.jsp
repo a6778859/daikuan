@@ -109,6 +109,17 @@
                         </select>
                       </div>
                     </div>
+
+                       <div class="form-group">
+                                          <label for="telphone" class="col-sm-3 control-label">
+                                            对应网址
+                                          </label>
+                                          <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="url" name="url"
+                                            placeholder="对应网址">
+                                          </div>
+                       </div>
+
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">

@@ -128,6 +128,7 @@ public class IndexController extends BaseController {
             json.put("remark", loan.getRemark() + "");
             json.put("pic", loan.getPic() + "");
             json.put("state", "1");
+            json.put("url", loan.getUrl()+"");
             int id_=Integer.parseInt(ID);
             Long  time=new Date().getTime()/1000000000;
             json.put("applynum", (900+(id_%3+1)*id_+time)+"");
